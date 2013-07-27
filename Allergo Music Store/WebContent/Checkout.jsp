@@ -25,7 +25,7 @@
 			<h:inputText  value="#{shoppingCart.item.category }"></h:inputText>
 			<h:outputLabel value="Quantity"></h:outputLabel>
 			<h:inputText value="#{shoppingCart.item.quantity }"></h:inputText>
-			<h:commandButton value="AddtoCart" action="#{shoppingCart.AddCart }" onclick="this.form.target='_self'"></h:commandButton>
+			<h:commandButton value="AddtoCart" action="#{shoppingCart.AddCart }" ></h:commandButton>
 			<h:commandButton value="Search" action="#{shoppingCart.search}"  ></h:commandButton>
 			
 			<h:dataTable border="1" value="#{shoppingCart.shoppingcart }" var="item">

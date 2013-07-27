@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ubc.ca.exception.NoStockException;
+import com.ubc.ca.exception.TooManyItemsFoundException;
 import com.ubc.ca.model.Item;
 
 public class ProductService {
@@ -30,6 +31,7 @@ public class ProductService {
 			item.setQuantity(1);
 			item.setTitle("test");
 			item.setUPC("111");
+		
 			searchList.add(item);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -39,30 +41,39 @@ public class ProductService {
 		
 	}
 	
-	public Item getItem(String UPC, String category,String title) throws ConnectException , SQLException
+	public Item getItem(String UPC, String category,String title,int quantity) throws ConnectException , SQLException, TooManyItemsFoundException, NoStockException
 	{
-		Item item = new Item();
+		System.out.println("getItem");
+		Item item = null;
 		Connection con=ConnectionService.getConnection();
 		String query=null;
 		PreparedStatement query_ps=null;
 		if(!(UPC.equals("")||null==UPC||category.equals("")||null==category|| title.equals("")||null==title))
 		{
-		query="SELECT * FROM ITEM where upc=? or category=? or title=?";
+			
+		query="SELECT item.upc,title,item_price,item_stock FROM item where item.upc=? or item.title=? or item_category=?";
+			
+			
 		query_ps= con.prepareStatement(query);
 		query_ps.setString(1, UPC);
-		query_ps.setString(2, category);
-		query_ps.setString(3, title);
+		query_ps.setString(2, title);
+		query_ps.setString(3, category);
+		 ResultSet rs=query_ps.executeQuery();
+		 if(rs!=null)
+		 {
+		    rs.next();
+		   
+		    	item=new Item();
+		    	item.setCategory(category); 
+		    	item.setQuantity(rs.getInt(3));
+		    	item.setTitle(rs.getString(2));
+		    	item.setUPC(Integer.toString(rs.getInt(1)));
+		   
+		  if(item.getQuantity()<quantity)
+			  throw new NoStockException();
 		}
-		if(!(UPC.equals("")||null==UPC||title.equals("")||null==title))
-		{
-			query="SELECT * FROM ITEM where upc=? or  title=?";
-			query_ps= con.prepareStatement(query);
-			query_ps.setString(1, UPC);
-			query_ps.setString(2, title);
-			
+		
 		}
-	    ResultSet rs=query_ps.executeQuery();
-	    
 		
 		
 		

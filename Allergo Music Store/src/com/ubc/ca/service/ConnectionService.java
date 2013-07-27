@@ -12,7 +12,7 @@ public class ConnectionService {
 		Connection con=null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ams","scott","temp");
+			con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ams","\"AllergoMusicStore\"","admin");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			throw new ConnectException(e.getMessage());

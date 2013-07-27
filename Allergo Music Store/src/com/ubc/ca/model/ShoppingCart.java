@@ -2,12 +2,15 @@ package com.ubc.ca.model;
 
 import java.io.IOException;
 import java.net.ConnectException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 
 
+import com.ubc.ca.exception.NoStockException;
+import com.ubc.ca.exception.TooManyItemsFoundException;
 import com.ubc.ca.service.ProductService;
 
 public class ShoppingCart {
@@ -56,9 +59,26 @@ public class ShoppingCart {
 	
   public String AddCart()
   {
-
-		  shoppingcart.add(this.item);
-		
+        ProductService service= new ProductService();
+        try {
+        	
+			item=service.getItem(item.getUPC(),item.getCategory(),item.getTitle(),item.getQuantity());
+			shoppingcart.add(this.item);
+		} catch (ConnectException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TooManyItemsFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoStockException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  
+		  
 		
 	  return "Add";
   }
