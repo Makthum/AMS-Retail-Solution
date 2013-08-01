@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13729985609590" configfile="/UBC student Registration/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="index" x="139" y="266" id="pf13730019769630" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf13730019769641" inlinks="pf13734100533313" path="/index.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="welcome" x="432" y="292" id="pf13730019769642" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13736759906110" inlinks="pf13730019769641" path="/welcome.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="*" id="pf13734100533314" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf13734100533313 pf13740116389530" path="/*"/>
-  <nodes xsi:type="pageflow:PFPage" name="Checkout" x="624" y="436" id="pf13736763747622" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" outlinks="pf13740897097030 pf13741127124190" inlinks="pf13736759906110 pf13740116389530 pf13740897560361" path="/Checkout.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="Results" x="754" y="394" id="pf13738453237901" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf13740897560361" inlinks="pf13740897097030" path="/Results.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="OrderConfirmation" x="697" y="112" id="pf13741127124201" inlinks="pf13741127124190" path="/OrderConfirmation.jsp"/>
-  <links id="pf13730019769641" target="pf13730019769642" source="pf13730019769630" outcome="success"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13729985609590" configfile="/Allergo Music Store/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index" x="139" y="266" id="pf13730019769630" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf13753772069660 pf13753772069661 pf13753772069662" inlinks="pf13734100533313" path="/index.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf13734100533314" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13734100533313 pf13740116389530" path="/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="Checkout" x="624" y="436" id="pf13736763747622" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" outlinks="pf13740897097030 pf13741127124190" inlinks="pf13740116389530 pf13740897560361 pf13753774075206 pf13753774075207" path="/Checkout.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Results" x="754" y="394" id="pf13738453237901" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf13740897560361" inlinks="pf13740897097030" path="/Results.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="OrderConfirmation" x="697" y="112" id="pf13741127124201" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf13741127124190" path="/OrderConfirmation.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Customer" x="168" y="436" id="pf13753772069673" referenceLink="//@navigationRule.8/@fromViewId|" outlinks="pf13753774075206 pf13753822206908" inlinks="pf13753772069661" path="/Customer.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Clerk" x="24" y="394" id="pf13753772069674" referenceLink="//@navigationRule.9/@fromViewId|" outlinks="pf13753774075207 pf13753822206909" inlinks="pf13753772069660" path="/Clerk.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="Manager" x="300" y="459" id="pf13753772069675" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" outlinks="pf137538222069010" inlinks="pf13753772069662" path="/Manager.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="ReturnItem" x="47" y="552" id="pf137538222069011" inlinks="pf13753822206909" path="/ReturnItem.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="RegisterCustomer" x="227" y="607" id="pf137538222069012" inlinks="pf13753822206908" path="/RegisterCustomer.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="AddItem" x="453" y="654" id="pf137538222069013" inlinks="pf137538222069010" path="/AddItem.jsp"/>
   <links id="pf13734100533313" target="pf13730019769630" source="pf13734100533314" outcome="loginPage"/>
-  <links id="pf13736759906110" target="pf13736763747622" source="pf13730019769642" outcome="instore"/>
   <links id="pf13740116389530" target="pf13736763747622" source="pf13734100533314" outcome="Add"/>
   <links id="pf13740897097030" target="pf13738453237901" source="pf13736763747622" outcome="search"/>
   <links id="pf13740897560361" target="pf13736763747622" source="pf13738453237901" outcome="AddSearch"/>
   <links id="pf13741127124190" target="pf13741127124201" source="pf13736763747622" outcome="OrderConfirmation"/>
+  <links id="pf13753772069660" target="pf13753772069674" source="pf13730019769630" outcome="clerk"/>
+  <links id="pf13753772069661" target="pf13753772069673" source="pf13730019769630" outcome="customer"/>
+  <links id="pf13753772069662" target="pf13753772069675" source="pf13730019769630" outcome="manager"/>
+  <links id="pf13753774075206" target="pf13736763747622" source="pf13753772069673" outcome="checkout"/>
+  <links id="pf13753774075207" target="pf13736763747622" source="pf13753772069674" outcome="checkout"/>
+  <links id="pf13753822206909" target="pf137538222069011" source="pf13753772069674" outcome="returnItem"/>
+  <links id="pf13753822206908" target="pf137538222069012" source="pf13753772069673" outcome="registerCustomer"/>
+  <links id="pf137538222069010" target="pf137538222069013" source="pf13753772069675" outcome="addItem"/>
 </pageflow:Pageflow>

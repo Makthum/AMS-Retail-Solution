@@ -38,7 +38,7 @@ public String login()
 			e.printStackTrace();
 		}
 		System.out.println(au);
-		if(au.equals("success"))
+		if(!au.equals("failure"))
 		{
 			FacesContext fc=FacesContext.getCurrentInstance();
 			

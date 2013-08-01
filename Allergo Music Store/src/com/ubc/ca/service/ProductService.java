@@ -51,7 +51,7 @@ public class ProductService {
 		if(!(UPC.equals("")||null==UPC||category.equals("")||null==category|| title.equals("")||null==title))
 		{
 			
-		query="SELECT item.upc,title,item_price,item_stock FROM item where item.upc=? or item.title=? or item_category=?";
+		query="SELECT item.upc,title,item_stock FROM item where item.upc=? or item.title=? or item_category=?";
 			
 			
 		query_ps= con.prepareStatement(query);
@@ -71,12 +71,27 @@ public class ProductService {
 		   
 		  if(item.getQuantity()<quantity)
 			  throw new NoStockException();
+		  else
+		  {
+			  
+			  query="update item set item_stock=? where upc=?";
+			  query_ps= con.prepareStatement(query);
+			  int j=item.getQuantity()-quantity;
+			  System.out.println(j);
+			  item.setQuantity(quantity);
+				query_ps.setInt(1,j);
+				query_ps.setString(2,item.getUPC());
+
+				int i =query_ps.executeUpdate();
+				System.out.println(i);
+				
+		  }
 		}
 		
 		}
 		
 		
-		
+		con.commit();
 		return item;
 	}
     

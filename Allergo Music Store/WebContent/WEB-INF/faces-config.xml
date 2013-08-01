@@ -20,14 +20,6 @@
 		<managed-bean-class>com.ubc.ca.model.ShoppingCart</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-	<navigation-rule>
-		<display-name>index</display-name>
-		<from-view-id>/index.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>success</from-outcome>
-			<to-view-id>/welcome.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
 	<navigation-rule>  
       <from-view-id>/*</from-view-id>  
       <navigation-case>  
@@ -35,14 +27,6 @@
           <to-view-id>/index.jsp</to-view-id>  
       </navigation-case>  
   </navigation-rule>
-	<navigation-rule>
-		<display-name>welcome</display-name>
-		<from-view-id>/welcome.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>instore</from-outcome>
-			<to-view-id>/Checkout.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
 	<navigation-rule>
 		<display-name>*</display-name>
 		<from-view-id>/*</from-view-id>
@@ -73,6 +57,70 @@
 		<navigation-case>
 			<from-outcome>OrderConfirmation</from-outcome>
 			<to-view-id>/OrderConfirmation.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>index</display-name>
+		<from-view-id>/index.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>clerk</from-outcome>
+			<to-view-id>/Clerk.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>index</display-name>
+		<from-view-id>/index.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>customer</from-outcome>
+			<to-view-id>/Customer.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>index</display-name>
+		<from-view-id>/index.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>manager</from-outcome>
+			<to-view-id>/Manager.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Customer</display-name>
+		<from-view-id>/Customer.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>checkout</from-outcome>
+			<to-view-id>/Checkout.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Clerk</display-name>
+		<from-view-id>/Clerk.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>checkout</from-outcome>
+			<to-view-id>/Checkout.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Clerk</display-name>
+		<from-view-id>/Clerk.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>returnItem</from-outcome>
+			<to-view-id>/ReturnItem.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Customer</display-name>
+		<from-view-id>/Customer.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>registerCustomer</from-outcome>
+			<to-view-id>/RegisterCustomer.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Manager</display-name>
+		<from-view-id>/Manager.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>addItem</from-outcome>
+			<to-view-id>/AddItem.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<lifecycle>

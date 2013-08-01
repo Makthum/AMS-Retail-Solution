@@ -29,7 +29,17 @@
 
 
 
-			</h:form>	</h:panelGrid></center>
+			</h:form>	</h:panelGrid><h:panelGrid border="0" columns="1">
+				<h:form>
+					<h:commandButton value="Customer" style="width: 103px; "></h:commandButton>
+			
+					<h:commandButton value="Clerk" style="width: 103px; "></h:commandButton>
+			
+					<h:commandButton value="Manager" style="width: 103px; "></h:commandButton>
+				</h:form>
+			</h:panelGrid>
+			
+		</center>
 	</f:view>
 </body>
 </html>

@@ -21,7 +21,7 @@ public class LoginService {
 			{
 				rs.next();
 				if(rs.getString(2).equals(password))
-				return "success";
+				return rs.getString(3);
 				else 
 					return "failure";
 			}
