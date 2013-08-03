@@ -8,31 +8,36 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1 align="center">Customer Registration Form</h1>
 <f:view>
-
-		<h:panelGrid border="1" columns="2">
+<center>
+<br>
+<br>
+<br>
+<h:form>
+		<h:panelGrid border="0" columns="2" style="height: 407px; width: 338px; ">
 			<h:outputLabel value="UserId"></h:outputLabel>
-			<h:form>
-				<h:inputText style="height: 45px; "></h:inputText>
-			</h:form>
-			<h:form><h:outputLabel value="Name"></h:outputLabel>
+			
+				<h:inputText ></h:inputText>
+			
+			<h:outputLabel value="Name"></h:outputLabel>
 				
-			</h:form><h:inputText></h:inputText>
-			<h:outputLabel value="Address"></h:outputLabel><h:form>
+			<h:inputText ></h:inputText>
+			<h:outputLabel value="Address"></h:outputLabel>
 				<h:inputText></h:inputText>
-			</h:form>
-			<h:outputLabel value="Phone Number"></h:outputLabel><h:form>
+			
+			<h:outputLabel value="Phone Number"></h:outputLabel>
 				<h:inputText></h:inputText>
-			</h:form>
+		
 			<h:outputLabel value="Password"></h:outputLabel>
-			<h:form>
+			
 				<h:inputText></h:inputText>
-			</h:form>
 			
 			
-		</h:panelGrid><h:form style="width: 117px; ">
+			
+		</h:panelGrid>
 			<h:commandButton value="Register"></h:commandButton>
-		</h:form>
+		</h:form></center>
 	</f:view>
 </body>
 </html>

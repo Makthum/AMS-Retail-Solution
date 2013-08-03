@@ -7,18 +7,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
+<body bgcolor="FFFF34">
 <f:view>
 
-<h:form>
-			
-			<h:panelGrid border="1" columns="2" >
+		<h1 align="center"> Allergo Music Store</h1>
+		<br>
+		<br>
+		<br>
+		<br>
+		<h:form>
+			<center>
+			<h:panelGrid border="0" columns="2" >
 				<h:outputText value="Username"></h:outputText>
 				<h:inputText value="#{student.userId}"></h:inputText>
 				<h:outputText value="password"></h:outputText>
 				<h:inputSecret value="#{student.password}"></h:inputSecret>
-				<h:commandButton action="#{student.login}" value="Submit"></h:commandButton>
+				
 			</h:panelGrid>
+			<br>
+			New Customers click <h:commandLink action="registerCustomer">
+				<h:outputText value="Here" ></h:outputText>
+			</h:commandLink>
+			<br>
+			<br>
+			<h:commandButton action="#{student.login}" value="Submit"/>
+			</center>
+			
 
 
 			</h:form></f:view>

@@ -9,12 +9,18 @@
 </head>
 <body>
 <f:view>
-
-<h:form>
+<h1 align="center"> Customer Main Menu </h1>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h:form><center>
 			<h:commandButton value="Register" style="width: 135px; " action="registerCustomer"></h:commandButton><br>
-			
+			<br>
+			<br>
 			<h:commandButton value="Purchase Item" style="width: 135px; " action="checkout"></h:commandButton><br>
 			
-		</h:form></f:view>
+		</center></h:form></f:view>
 </body>
 </html>

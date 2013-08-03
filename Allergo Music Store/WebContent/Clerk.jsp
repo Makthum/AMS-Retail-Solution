@@ -8,11 +8,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1 align="center">Clerk Main Menu</h1>
 <f:view>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-<h:form>
+<h:form><center>
 			<h:commandButton value="Purchase Item" style="width: 142px; " action="checkout"></h:commandButton><br>
+		<br>
+		<br>
+		<br>
 			<h:commandButton value="Process Return" style="width: 142px; " action="returnItem"></h:commandButton>
-		</h:form></f:view>
+		</center></h:form></f:view>
 </body>
 </html>

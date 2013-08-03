@@ -8,25 +8,27 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1 align="center">Return Item Menu</h1>
 <f:view>
-
-		<h:panelGrid border="1" columns="2">
-			<h:form>
+<h:form><br><br><br>
+		<center><h:panelGrid border="0" columns="2" style="height: 123px; width: 326px; ">
+			
 
 				<h:outputLabel value="Receipt ID"></h:outputLabel>
-			</h:form>
 			
-			<h:form>
+			
+			
 				<h:inputText></h:inputText>
-			</h:form>
+			
 			<h:outputLabel value="UPC"></h:outputLabel>
 			
-			<h:form>
+			
 				<h:inputText></h:inputText>
-			</h:form>
-		</h:panelGrid><h:form>
+			
+		</h:panelGrid><br>
+		<br>
 			<h:commandButton value="Return Item"></h:commandButton>
-		</h:form>
+		</center></h:form>
 	</f:view>
 </body>
 </html>

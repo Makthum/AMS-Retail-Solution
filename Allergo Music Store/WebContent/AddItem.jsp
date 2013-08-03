@@ -5,45 +5,47 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Item Page </title>
 </head>
 <body>
+<h1 align="center"> Add Items to Store</h1><br>
+<br><br>
 <f:view>
-
-		<h:panelGrid border="1" columns="2">
+<center><h:form>
+		<h:panelGrid border="0" columns="2" style="width: 363px; height: 306px">
 			<h:outputLabel value="UPC"></h:outputLabel>
-			<h:form>
+			
 				<h:inputText></h:inputText>
-			</h:form>
+			
 			<h:outputLabel value="TITLE"></h:outputLabel>
-			<h:form>
+			
 				<h:inputText></h:inputText>
-			</h:form>
+			
 			<h:outputLabel value="TYPE"></h:outputLabel>
-			<h:form>
+		
 				<h:inputText></h:inputText>
-			</h:form>
+		
 			<h:outputLabel value="CATEGORY"></h:outputLabel>
-			<h:form>
+		
 				<h:inputText></h:inputText>
-			</h:form>
+			
 			<h:outputLabel value="COMPANY"></h:outputLabel>
-			<h:form>
+			
 				<h:inputText></h:inputText>
-			</h:form>
-			<h:outputLabel value="PRICE"></h:outputLabel><h:form>
+		
+			<h:outputLabel value="PRICE"></h:outputLabel>
 				<h:inputText></h:inputText>
-			</h:form>
+		
 			
 			<h:outputLabel value="STOCK"></h:outputLabel>
-			<h:form>
+			
 				<h:inputText></h:inputText>
-			</h:form>
 			
 			
-		</h:panelGrid><h:form>
-			<h:commandButton value="Add Item"></h:commandButton>
-		</h:form>
+			
+		</h:panelGrid> <br><br>
+			<h:commandButton value="Add Item"></h:commandButton></h:form>
+		</center>
 	</f:view>
 </body>
 </html>

@@ -13,7 +13,7 @@ public class LoginService {
 	{
 		try {
 			Connection con=ConnectionService.getConnection();
-			String query="select * from \"Login\" where \"userId\"=?";
+			String query="select * from Login where username=?";
 			PreparedStatement preparestatement=con.prepareStatement(query);
 			preparestatement.setString(1, userName);
 			ResultSet rs=preparestatement.executeQuery();

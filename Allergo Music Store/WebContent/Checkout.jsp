@@ -9,26 +9,32 @@
 </head>
 <body>
 
-
+<h1 align="center"> Order Menu </h1>
 
 <f:view>
 
 
 
 		<h:form id="myform">
+
+
+<center>
+			<h:panelGrid border="0" columns="3" style="width: 1001px; ">
+				<h:outputLabel value="Title"></h:outputLabel><h:inputText value="#{shoppingCart.item.title }"></h:inputText><h:commandButton value="AddtoCart" action="#{shoppingCart.AddCart }" style="width: 136px; "></h:commandButton><h:outputLabel value="Cateogry"></h:outputLabel><h:inputText value="#{shoppingCart.item.category }"></h:inputText><h:commandButton value="Search" action="#{shoppingCart.search}" style="width: 137px; "></h:commandButton><h:outputLabel value="Quantity"></h:outputLabel><h:inputText value="#{shoppingCart.item.quantity }"></h:inputText>
+				
+				
+				
+			</h:panelGrid></center>
 			
 			
-			<h:outputLabel value="UPC"></h:outputLabel><h:inputText value="#{shoppingCart.item.UPC}"></h:inputText>
-			<h:outputLabel value="Title"></h:outputLabel>
-			<h:inputText value="#{shoppingCart.item.title }"></h:inputText>
-			<h:outputLabel value="Cateogry"></h:outputLabel>
-			<h:inputText  value="#{shoppingCart.item.category }"></h:inputText>
-			<h:outputLabel value="Quantity"></h:outputLabel>
-			<h:inputText value="#{shoppingCart.item.quantity }"></h:inputText>
-			<h:commandButton value="AddtoCart" action="#{shoppingCart.AddCart }" ></h:commandButton>
-			<h:commandButton value="Search" action="#{shoppingCart.search}"  ></h:commandButton>
 			
-			<h:dataTable border="1" value="#{shoppingCart.shoppingcart }" var="item">
+			
+			
+			
+			
+			
+			
+			<br><br><center><h:dataTable border="1" value="#{shoppingCart.shoppingcart }" var="item">
 				<h:column id="column1">
 					<f:facet name="header">
 						<h:outputText value="Title"></h:outputText>
@@ -53,7 +59,7 @@
 						<h:outputText value="Quantity"></h:outputText>
 					</f:facet>
 					<h:outputLabel value="#{item.quantity} "/>
-				</h:column>			</h:dataTable>
+				</h:column>			</h:dataTable></center>
 			
 
 			<br>

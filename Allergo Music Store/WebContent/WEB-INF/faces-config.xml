@@ -123,6 +123,14 @@
 			<to-view-id>/AddItem.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>index</display-name>
+		<from-view-id>/index.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>registerCustomer</from-outcome>
+			<to-view-id>/RegisterCustomer.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	<lifecycle>
 		<phase-listener>com.ubc.ca.phaselistener.LoginListener</phase-listener>
 	</lifecycle>
