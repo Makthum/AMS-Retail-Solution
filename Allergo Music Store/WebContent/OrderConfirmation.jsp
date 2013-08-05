@@ -10,6 +10,60 @@
 <body>
 <f:view>
 
+<center><h1> Order Confirmation </h1><br>
+<br><br>
+			<h:panelGrid border="0" columns="4" style="width: 641px; ">
+				<h:outputLabel value="Receipt Id "></h:outputLabel>
+				<h:form>
+					<h:inputText readonly="false" value="#{purchase.receiptId} "></h:inputText>
+				</h:form>
+				<h:outputLabel value="Date Purchased"></h:outputLabel>
+				<h:form>
+					<h:inputText readonly="false" value="#{purchase.purchasedDate }"></h:inputText>
+				</h:form>
+				<h:outputLabel value="Customer Id"></h:outputLabel>
+				<h:form>
+					<h:inputText readonly="false" value="#{purchase.customerId }"></h:inputText>
+				</h:form>
+				<h:outputLabel value="Total Amount"></h:outputLabel>
+				<h:form>
+					<h:inputText readonly="false" value="#{purchase.totalprice }"></h:inputText>
+				</h:form>
+				
+				
+				
+			</h:panelGrid>
+			
+			<br>
+			<br>
+			<br>
+			<h:dataTable border="1" value="#{shoppingCart.shoppingcart }" var="item">
+				<h:column id="column1">
+					<f:facet name="header">
+						<h:outputText value="Title"/>
+					</f:facet>
+					<h:outputLabel value="#{item.title} "/>
+				</h:column>
+				<h:column id="column2">
+					<f:facet name="header">
+						<h:outputText value="UPC"/>
+					</f:facet>
+					<h:outputLabel value="#{item.UPC} "/>
+				</h:column>
+				<h:column id="column3">
+					<f:facet name="header">
+						<h:outputText value="Category"/>
+					</f:facet>
+					<h:outputLabel value="#{item.category} "/>
+				</h:column>
+
+<h:column id="column4">
+					<f:facet name="header">
+						<h:outputText value="Quantity"/>
+					</f:facet>
+					<h:outputLabel value="#{item.quantity} "/>
+				</h:column>			</h:dataTable>
+		</center>
 </f:view>
 </body>
 </html>

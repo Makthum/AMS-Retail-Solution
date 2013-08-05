@@ -21,10 +21,14 @@
 <center>
 			<h:panelGrid border="0" columns="3" style="width: 1001px; ">
 				<h:outputLabel value="Title"></h:outputLabel><h:inputText value="#{shoppingCart.item.title }"></h:inputText><h:commandButton value="AddtoCart" action="#{shoppingCart.AddCart }" style="width: 136px; "></h:commandButton><h:outputLabel value="Cateogry"></h:outputLabel><h:inputText value="#{shoppingCart.item.category }"></h:inputText><h:commandButton value="Search" action="#{shoppingCart.search}" style="width: 137px; "></h:commandButton><h:outputLabel value="Quantity"></h:outputLabel><h:inputText value="#{shoppingCart.item.quantity }"></h:inputText>
-				
-				
-				
-			</h:panelGrid></center>
+					<h:outputText ></h:outputText><h:outputText value="LeadSinger"></h:outputText><h:inputText value="#{shoppingCart.item.leadSinger }"></h:inputText>
+					
+					
+					
+
+
+
+				</h:panelGrid></center>
 			
 			
 			
@@ -34,7 +38,10 @@
 			
 			
 			
-			<br><br><center><h:dataTable border="1" value="#{shoppingCart.shoppingcart }" var="item">
+			<br><br>
+			
+			<h:outputText value="#{shoppingCart.errorMessage}"></h:outputText><br><br>
+			<center><h:dataTable border="1" value="#{shoppingCart.shoppingcart }" var="item">
 				<h:column id="column1">
 					<f:facet name="header">
 						<h:outputText value="Title"></h:outputText>
@@ -74,9 +81,27 @@
 <br>
 <br>
 <br>
-			<h:outputText value="Total"></h:outputText>
-			<h:inputText ></h:inputText>
-			<h:commandButton value="Pay" action="#{shoppingCart.validateShoppingCart }"></h:commandButton>
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<h:outputText value="Total"></h:outputText> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			<h:inputText value="#{shoppingCart.totalprice }" ></h:inputText><br>
+			<br>
+			<br>
+
+		<center>	<h:panelGrid border="0" columns="2">
+				<h:commandButton value="Pay" action="#{purchase.generateOrder }" style="width: 96px; ">
+				<f:setPropertyActionListener value="#{shoppingCart.shoppingcart }" target="#{purchase.shoppingCart }"/>
+				<f:setPropertyActionListener value="#{shoppingCart.totalprice }" target="#{purchase.totalprice }"/>
+				<f:setPropertyActionListener value="#{userId}" target="#{purchase.customerId }"/>
+				
+				</h:commandButton>
+				<h:selectOneRadio value="#{shoppingCart.paymentMethod }" style="width: 315px; ">
+					<f:selectItem itemValue="PayCash" itemLabel="Pay by Cash"/>
+   	<f:selectItem itemValue="PayCredit" itemLabel="Pay by Credit"/>
+					</h:selectOneRadio>
+			
+			</h:panelGrid></center>
+			
 
 		</h:form>
 		

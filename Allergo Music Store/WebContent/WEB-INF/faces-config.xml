@@ -20,6 +20,11 @@
 		<managed-bean-class>com.ubc.ca.model.ShoppingCart</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>purchase</managed-bean-name>
+		<managed-bean-class>com.ubc.ca.model.Purchase</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>  
       <from-view-id>/*</from-view-id>  
       <navigation-case>  
@@ -55,7 +60,7 @@
 		<display-name>Checkout</display-name>
 		<from-view-id>/Checkout.jsp</from-view-id>
 		<navigation-case>
-			<from-outcome>OrderConfirmation</from-outcome>
+			<from-outcome>orderConfirmation</from-outcome>
 			<to-view-id>/OrderConfirmation.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>

@@ -6,6 +6,27 @@ public class Item {
 	private String UPC;
 	private int quantity;
 	private boolean is_Selected;
+	private float price;
+	private String errorMessage;
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	private String LeadSinger;
+	public String getLeadSinger() {
+		return LeadSinger;
+	}
+	public void setLeadSinger(String leadSinger) {
+		LeadSinger = leadSinger;
+	}
 	public boolean isIs_Selected() {
 		return is_Selected;
 	}
