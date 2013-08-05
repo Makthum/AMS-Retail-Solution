@@ -17,29 +17,103 @@ import com.ubc.ca.model.Item;
 
 public class ProductService {
 	
-	public ArrayList<Item> searchProduct(String UPC, String category,String title,ArrayList<Item> searchList) throws ConnectException
+	public ArrayList<Item> searchProduct(String category,String title,String leadSinger,int quantity,ArrayList<Item> searchList) throws ConnectException, SQLException
 	{
-		Connection con=ConnectionService.getConnection();
-		String query="select * from \"Login\" where \"UPC\"=? or \"Category\"=? or \"title\"=? ";
-		PreparedStatement preparestatement;
-		searchList=null;
 		searchList= new ArrayList<Item>();
-		try {
-			preparestatement = con.prepareStatement(query);
-			preparestatement.setString(1, UPC);
-		//	ResultSet rs=preparestatement.executeQuery();
-			/* Dummy values for now */
-			Item item=new Item();
-			item.setCategory("test");
-			item.setQuantity(1);
-			item.setTitle("test");
-			item.setUPC("111");
+		System.out.println("getItem");
+		Item item = null;
+		Connection con=ConnectionService.getConnection();
+		String query=null;
+		PreparedStatement query_ps=null;
+		if(!(leadSinger.equals("")||null==leadSinger|| category.equals("")||null==category || title.equals("")||null==title))
+		{
+			
+		query="SELECT item.upc,title,item_stock,item_category FROM item,leadsinger where item.upc=leadsinger.upc and item.item_category=? and item.title=? and leadsinger.singer_name=?";
+			
+		query_ps= con.prepareStatement(query);
+
+		query_ps.setString(1, category);
+		query_ps.setString(2, title);
+
+		query_ps.setString(3, leadSinger);
 		
-			searchList.add(item);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		else if(!(category.equals("")||null==category|| title.equals("")||null==title))
+		{
+			
+		query="SELECT item.upc,title,item_stock,item_category,item_price FROM item where item.title=? and item_category=?";
+			
+		query_ps= con.prepareStatement(query);
+
+		query_ps.setString(1, title);
+		query_ps.setString(2, category);
+		}
+		else if(!(leadSinger.equals("")||null==leadSinger|| title.equals("")||null==title))
+		{
+			
+		query="SELECT item.upc,title,item_stock,item_category,item_price FROM item,leadsinger where item.upc=leadsinger.upc and item.title=? and leadsinger.singer_name=?";
+			
+		query_ps= con.prepareStatement(query);
+
+		query_ps.setString(1, title);
+		query_ps.setString(2, leadSinger);
+		}
+		else if(!(leadSinger.equals("")||null==leadSinger|| category.equals("")||null==category))
+		{
+			
+		query="SELECT item.upc,title,item_stock,item_category,item_price FROM item,leadsinger where item.upc=leadsinger.upc and item.item_category=? and leadsinger.singer_name=?";
+			
+		query_ps= con.prepareStatement(query);
+
+		query_ps.setString(1, category);
+		query_ps.setString(2, leadSinger);
+		}
+		if(!(category.equals("")||null==category))
+		{
+			query="SELECT item.upc,title,item_stock,item_category,item_price FROM item where item_category=?";
+			query_ps= con.prepareStatement(query);
+			query_ps.setString(1, category);
+		}
+		if(!(title.equals("")||null==title))
+		{
+			query="SELECT item.upc,title,item_stock,item_category,item_price FROM item where item.title=?";
+			query_ps= con.prepareStatement(query);
+
+			query_ps.setString(1, title);
+
+		}
+		if(!(leadSinger.equals("")||null==leadSinger))
+		{
+			query="SELECT item.upc,title,item_stock,item_category,item_price FROM item,leadsinger where item.upc=leadsinger.upc and leadsinger.singer_name=?";
+			query_ps= con.prepareStatement(query);
+
+			query_ps.setString(1, leadSinger);
+
+		}
+		
+		
+		
+		ResultSet rs=query_ps.executeQuery();
+		 if(rs!=null)
+			 {
+			 while(rs.next())
+		 {
+		    
+		   
+		    	item=new Item();
+		    	item.setPrice(rs.getFloat(5));
+		    	item.setCategory(rs.getString(4)); 
+		    	item.setQuantity(rs.getInt(3));
+		    	item.setTitle(rs.getString(2));
+		    	item.setUPC(Integer.toString(rs.getInt(1)));
+		   
+	            searchList.add(item);
+		}
+		
+			 }
+		
+		
+		con.commit();
 		return searchList;
 		
 	}
@@ -169,31 +243,21 @@ public class ProductService {
 		   
 	
 			  
-			  query="update item set item_stock=? where upc=?";
-			  query_ps= con.prepareStatement(query);
-			  int j=0;
-			  if(item.getQuantity()<quantity)
-			  {
-				  j=0;
-				  item.setErrorMessage("Requested Quantity Not Available. Quantity set to Available stock");
-				  item.setQuantity(item.getQuantity());
-			  }
-			  else
-			  {
-			  j=item.getQuantity()-quantity;
-			  System.out.println(j);
-			  item.setQuantity(quantity);
-			  }
-				query_ps.setInt(1,j);
-				query_ps.setString(2,item.getUPC());
+		    	updateStock(item, quantity);	
+		    	if(item.getQuantity()<quantity)
+				  {
+					  item.setErrorMessage("Requested Quantity Not Available. Quantity set to Available stock");
+					  item.setQuantity(item.getQuantity());
+				  }
+				  else
+				  {
+				   item.setQuantity(quantity);
+				  }
 
-				int i =query_ps.executeUpdate();
-				System.out.println(i);
-				
 		  
 		}
 		
-	
+	   
 		
 		
 		con.commit();
@@ -263,5 +327,32 @@ public class ProductService {
 			}
 		}
 		return cal;
+	}
+	
+	public int updateStock(Item item,int quantity) throws ConnectException, SQLException
+	{
+		Connection con=ConnectionService.getConnection();
+		  String query="update item set item_stock=? where upc=?";
+		  PreparedStatement query_ps= con.prepareStatement(query);
+		  int j=0;
+		  if(item.getQuantity()<quantity)
+		  {
+			  j=0;
+			  item.setErrorMessage("Requested Quantity Not Available. Quantity set to Available stock");
+			  item.setQuantity(item.getQuantity());
+		  }
+		  else
+		  {
+		  j=item.getQuantity()-quantity;
+		  System.out.println(j);
+		  item.setQuantity(quantity);
+		  }
+			query_ps.setInt(1,j);
+			query_ps.setString(2,item.getUPC());
+
+			int i =query_ps.executeUpdate();
+			System.out.println(i);
+			con.commit();
+			return i;
 	}
 }

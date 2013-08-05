@@ -132,8 +132,11 @@ public class ShoppingCart {
   {
 	  ProductService productService= new ProductService();
 	  try {
-		this.searchList=productService.searchProduct(item.getUPC(),item.getTitle(),item.getCategory(),searchList);
+		this.searchList=productService.searchProduct(item.getCategory(),item.getTitle(),item.getLeadSinger(),item.getQuantity(),searchList);
 	} catch (ConnectException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
@@ -146,7 +149,19 @@ public class ShoppingCart {
 	  for(Item items: searchList)
 	  {
 		  if (checked.get(items.getUPC())) {
-			  shoppingcart.add(items);
+			  
+			  totalprice=(items.getPrice()* this.item.getQuantity())+totalprice;
+			  ProductService service= new ProductService();
+			  try {
+				service.updateStock(items, this.item.getQuantity());
+				shoppingcart.add(items);
+			} catch (ConnectException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        }
 	  }
 	
