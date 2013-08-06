@@ -9,6 +9,10 @@
 </head>
 <body>
 <f:view>
+<center><h1>Item Search</h1>
+<br>
+<br>
+<br>
 
 <h:form>
 		<h:dataTable border="1" value="#{shoppingCart.searchList }" var="item">
@@ -45,6 +49,9 @@
 					<h:selectBooleanCheckbox value="#{shoppingCart.checked[item.UPC] }"></h:selectBooleanCheckbox>
 			
 				</h:column>			</h:dataTable>
+				<br>
+				<br>
+				<br>
 			<h:commandButton value="Add to Cart" action="#{shoppingCart.AddSearchedItems }" onclick="openWin()"></h:commandButton>
 		<script type="text/javascript" language = "JavaScript"> 
 function openWin()
@@ -56,7 +63,7 @@ function openWin()
 
 }
 </script>
-		</h:form>
+		</h:form></center>
 	</f:view>
 </body>
 </html>

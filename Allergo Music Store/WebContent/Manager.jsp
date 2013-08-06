@@ -14,12 +14,12 @@
 			<h:commandButton value="Add Item" style="width: 125px; " action="addItem"></h:commandButton><br>
 			<br>
 			<br>
-			<h:commandButton value="Process Set" style="width: 125px; "></h:commandButton><br>
+			<h:commandButton value="Process Set" style="width: 125px; " action="processDelivery"></h:commandButton><br>
 			<br>
 			<br>
-			<h:commandButton value="Sales Report" style="width: 125px; "></h:commandButton><br>
+			<h:commandButton value="Sales Report" style="width: 125px; " action="dailySalesReport"></h:commandButton><br>
 			<br>
-			<br><h:commandButton value="Selling Items" style="width: 125px; "></h:commandButton>
+			<br><h:commandButton value="Selling Items" style="width: 125px; " action="topSellingReport"></h:commandButton>
 		</center></h:form></f:view>
 </body>
 </html>

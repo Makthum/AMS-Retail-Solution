@@ -2,17 +2,19 @@ package com.ubc.ca.service;
 
 import java.net.ConnectException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.ubc.ca.exception.InvalidLoginException;
+
 public class LoginService {
 
-	public String authenticate(String userName, String password) throws ConnectException
+	public String authenticate(String userName, String password) throws ConnectException, InvalidLoginException
 	{
+		Connection con=ConnectionService.getConnection();
+
 		try {
-			Connection con=ConnectionService.getConnection();
 			String query="select * from Login where username=?";
 			PreparedStatement preparestatement=con.prepareStatement(query);
 			preparestatement.setString(1, userName);
@@ -23,14 +25,25 @@ public class LoginService {
 				if(rs.getString(2).equals(password))
 				return rs.getString(3);
 				else 
-					return "failure";
+					throw new InvalidLoginException("Invalid password");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			throw new ConnectException(e.getMessage());
 		}
+		finally
+		{
+			if(con!=null)
+			{
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		return "failure";
 		
 		
-			return "failure";
 	}
 }

@@ -9,7 +9,7 @@ public class InvalidLoginException extends Exception{
 	
 	public InvalidLoginException(String msg ) {
 		// TODO Auto-generated constructor stub
-		super("msg");
+		super(msg);
 	}
 	
 

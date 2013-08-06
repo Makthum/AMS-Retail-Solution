@@ -30,7 +30,8 @@
 			</h:commandLink>
 			<br>
 			<br>
-			<h:commandButton action="#{student.login}" value="Submit"/>
+			<h:commandButton action="#{student.login}" value="Submit"/><br><br><h:outputLabel
+					value="#{student.errorMessage }"></h:outputLabel>
 			</center>
 			
 

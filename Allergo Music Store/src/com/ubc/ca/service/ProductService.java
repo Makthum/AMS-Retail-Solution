@@ -355,4 +355,55 @@ public class ProductService {
 			con.commit();
 			return i;
 	}
+	
+	public void savePurchasedItems(ArrayList<Item> shoppingCart,int receiptid) 
+	{
+		Connection con=null;
+		try {
+			con = ConnectionService.getConnection();
+			String query= "INSERT INTO PURCHASEITEM VALUES(?,?,?)";
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			for(Item items : shoppingCart )
+			{
+				ps.setInt(1, receiptid);
+				ps.setInt(2, Integer.parseInt(items.getUPC()));
+				ps.setInt(3, items.getQuantity());
+				ps.executeUpdate();
+			}
+			con.commit();
+		} catch (ConnectException e) {
+			// TODO Auto-generated catch block
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(con!=null)
+			{
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
+	}
 }

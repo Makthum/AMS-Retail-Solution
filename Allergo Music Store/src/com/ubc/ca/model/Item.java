@@ -1,19 +1,39 @@
 package com.ubc.ca.model;
 
+/**
+ * 
+ * @author Mohamed Makthum
+ * This Model class contains attributes and fields associated with Item object used in shopping cart and Order transaction.
+ */
+
 public class Item {
+	
+	// Item object attributes 
+	
+	
 	private String title;
 	private String category;
 	private String UPC;
 	private int quantity;
-	private boolean is_Selected;
 	private float price;
+	
+	
+	// Holds any error message to be displayed encountered during db transaction 
+	
 	private String errorMessage;
+	
+	
+	
+	
 	public String getErrorMessage() {
 		return errorMessage;
 	}
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
+	
+	
+	
 	public float getPrice() {
 		return price;
 	}
@@ -26,12 +46,6 @@ public class Item {
 	}
 	public void setLeadSinger(String leadSinger) {
 		LeadSinger = leadSinger;
-	}
-	public boolean isIs_Selected() {
-		return is_Selected;
-	}
-	public void setIs_Selected(boolean is_Selected) {
-		this.is_Selected = is_Selected;
 	}
 	public String getTitle() {
 		return title;
