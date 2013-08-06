@@ -33,38 +33,6 @@
       </navigation-case>  
   </navigation-rule>
 	<navigation-rule>
-		<display-name>*</display-name>
-		<from-view-id>/*</from-view-id>
-		<navigation-case>
-			<from-outcome>Add</from-outcome>
-			<to-view-id>/Checkout.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>Checkout</display-name>
-		<from-view-id>/Checkout.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>search</from-outcome>
-			<to-view-id>/Results.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>Results</display-name>
-		<from-view-id>/Results.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>AddSearch</from-outcome>
-			<to-view-id>/Checkout.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>Checkout</display-name>
-		<from-view-id>/Checkout.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>orderConfirmation</from-outcome>
-			<to-view-id>/OrderConfirmation.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
 		<display-name>index</display-name>
 		<from-view-id>/index.jsp</from-view-id>
 		<navigation-case>
@@ -86,22 +54,6 @@
 		<navigation-case>
 			<from-outcome>manager</from-outcome>
 			<to-view-id>/Manager.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>Customer</display-name>
-		<from-view-id>/Customer.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>checkout</from-outcome>
-			<to-view-id>/Checkout.jsp</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>Clerk</display-name>
-		<from-view-id>/Clerk.jsp</from-view-id>
-		<navigation-case>
-			<from-outcome>checkout</from-outcome>
-			<to-view-id>/Checkout.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -158,6 +110,62 @@
 		<navigation-case>
 			<from-outcome>dailySalesReport</from-outcome>
 			<to-view-id>/DailySalesReport.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Clerk</display-name>
+		<from-view-id>/Clerk.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>checkout</from-outcome>
+			<to-view-id>/OrderItems.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Customer</display-name>
+		<from-view-id>/Customer.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>checkout</from-outcome>
+			<to-view-id>/OrderItems.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Results</display-name>
+		<from-view-id>/Results.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>AddSearch</from-outcome>
+			<to-view-id>/OrderItems.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>OrderItems</display-name>
+		<from-view-id>/OrderItems.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>search</from-outcome>
+			<to-view-id>/Results.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>OrderItems</display-name>
+		<from-view-id>/OrderItems.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>orderConfirmation</from-outcome>
+			<to-view-id>/OrderConfirmation.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>OrderItems</display-name>
+		<from-view-id>/OrderItems.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>CardInfoPage</from-outcome>
+			<to-view-id>/CardPayment.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>CardPayment</display-name>
+		<from-view-id>/CardPayment.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>orderConfirmation</from-outcome>
+			<to-view-id>/OrderConfirmation.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<lifecycle>

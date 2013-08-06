@@ -27,7 +27,7 @@ public class LoginListener implements PhaseListener{
 		}
 		if (!isLoginPage && (currentUser == null || currentUser == "")) {
 		{
-			String userId=(String) session.getAttribute("userId");
+			String userId=(String) session.getAttribute("username");
 			if(userId==null)
 			{
 				System.out.println("session is null");

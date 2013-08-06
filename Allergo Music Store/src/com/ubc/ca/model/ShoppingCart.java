@@ -26,7 +26,7 @@ public class ShoppingCart {
 	//holds error messages for checkout page 
 	private String errorMessage=null;
 	
-	private String paymentMethod=null;
+	private boolean paymentMethod;
 	private float totalprice=0;
 	
 	
@@ -47,11 +47,13 @@ public class ShoppingCart {
 		this.totalprice = totalprice;
 	}
 
-	public String getPaymentMethod() {
+	
+
+	public boolean isPaymentMethod() {
 		return paymentMethod;
 	}
 
-	public void setPaymentMethod(String paymentMethod) {
+	public void setPaymentMethod(boolean paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
 

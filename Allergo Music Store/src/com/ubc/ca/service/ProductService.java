@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -277,7 +279,7 @@ public class ProductService {
 	}
 	
 	
-	public String saveOrder(float totalprice,String customerId) throws ConnectException, SQLException
+	public String saveOrder(float totalprice,String customerId,String paymentType,String cardNo,String expiryDate) throws ConnectException, SQLException
 	{
 		Connection con= ConnectionService.getConnection();
 		String receiptId=null;
@@ -287,10 +289,24 @@ public class ProductService {
 		Calendar cal= new GregorianCalendar();
 		query_update.setDate(1, new Date(cal.getTimeInMillis()));
 		query_update.setString(2, customerId);
-		query_update.setString(3, "1234567890123456");
+		query_update.setString(3, cardNo);
 		cal.add(Calendar.MONTH, 5);
 		cal=getExpectedDate();
-		query_update.setDate(4, new Date(cal.getTimeInMillis()));
+		java.sql.Date sqlStartDate=null;
+		if(expiryDate!=null)
+		{
+		SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+		java.util.Date date;
+		
+		try {
+			date = sdf1.parse(expiryDate);
+		sqlStartDate = new Date(date.getTime());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}  
+		query_update.setDate(4, sqlStartDate);
 		query_update.setDate(5, new Date(cal.getTimeInMillis()));
 		query_update.setNull(6, java.sql.Types.NULL);
 		query_update.executeQuery();

@@ -98,7 +98,7 @@
 				<h:selectOneRadio id="payment"value="#{shoppingCart.paymentMethod }" style="width: 315px; ">
 					<f:selectItem itemValue="false" itemLabel="Pay by Cash"/>
    	<f:selectItem itemValue="true" itemLabel="Pay by Credit"/>
-   	  <f:ajax render="payment" />
+   	  <h:ajax render="payment" />
 					</h:selectOneRadio>
 			
 			</h:panelGrid>

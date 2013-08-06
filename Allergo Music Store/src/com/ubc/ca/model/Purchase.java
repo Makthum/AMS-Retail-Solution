@@ -29,8 +29,10 @@ public class Purchase {
 	private Date   purchasedDate;
 	private ArrayList<Item> shoppingCart= new ArrayList<Item>();
 	private String receiptId;
+	private String cardNo;
+	private String   expiryDate;
 	
-	
+	private String paymentType;
 	//Error Message for Order Confirmation Page 
 	private String errorMessage;
 	
@@ -77,6 +79,24 @@ public class Purchase {
 	}
 	
 	
+	public String getCardNo() {
+		return cardNo;
+	}
+	public void setCardNo(String cardNo) {
+		this.cardNo = cardNo;
+	}
+	public String getExpiryDate() {
+		return expiryDate;
+	}
+	public void setExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+	public String getPaymentType() {
+		return paymentType;
+	}
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
 	/**
 	 * This method is invoked when pay button is clicked. This method populates the fields on the Order confirmation page and 
 	 * creates a new order ,retrieves receiptId from back end and displays it.
@@ -85,6 +105,7 @@ public class Purchase {
 	
 	public String generateOrder()
 	{
+		
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
 		
@@ -94,9 +115,9 @@ public class Purchase {
 		ProductService service = new ProductService();
 		
 		try {
-			
-			this.receiptId= service.saveOrder(totalprice, customerId);
-			this.customerId=userId;		
+			this.customerId=userId;	
+			this.receiptId= service.saveOrder(totalprice, customerId,paymentType,cardNo,expiryDate);
+				System.out.println();
 			this.purchasedDate=new Date(System.currentTimeMillis());
 			service.savePurchasedItems(shoppingCart, Integer.parseInt(receiptId));
 			
@@ -109,5 +130,16 @@ public class Purchase {
 		}
 		return "orderConfirmation";
 	}
+	
+	
+	public String Payment()
+	{
+		if(this.paymentType.equalsIgnoreCase("card"))
+			return "CardInfoPage";
+		else
+			
+		return generateOrder();
+	}
+	
 	
 }
