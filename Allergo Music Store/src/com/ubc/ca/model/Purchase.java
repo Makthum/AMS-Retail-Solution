@@ -10,136 +10,149 @@ import javax.servlet.http.HttpSession;
 
 import com.ubc.ca.service.ProductService;
 
-
 /**
  * 
- * @author Makthum
- * This Model class is associated with order save and holds values for Order Confirmation page
+ * @author Makthum This Model class is associated with order save and holds
+ *         values for Order Confirmation page
  */
 
 public class Purchase {
 
-	
 	/**
-	 * These attributes corresponds to fields displayed on the order confirmation page 
+	 * These attributes corresponds to fields displayed on the order
+	 * confirmation page
 	 * 
 	 */
 	private String customerId;
-	private float  totalprice;
-	private Date   purchasedDate;
-	private ArrayList<Item> shoppingCart= new ArrayList<Item>();
+	private float totalprice;
+	private Date purchasedDate;
+	private ArrayList<Item> shoppingCart = new ArrayList<Item>();
 	private String receiptId;
 	private String cardNo;
-	private String   expiryDate;
-	
+	private String expiryDate;
+
 	private String paymentType;
-	//Error Message for Order Confirmation Page 
+	// Error Message for Order Confirmation Page
 	private String errorMessage;
-	
-	
-	
-	
+
 	public String getCustomerId() {
 		return customerId;
 	}
+
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
+
 	public float getTotalprice() {
 		return totalprice;
 	}
+
 	public void setTotalprice(float totalprice) {
 		this.totalprice = totalprice;
 	}
+
 	public Date getPurchasedDate() {
 		return purchasedDate;
 	}
+
 	public void setPurchasedDate(Date purchasedDate) {
 		this.purchasedDate = purchasedDate;
 	}
+
 	public ArrayList<Item> getShoppingCart() {
 		return shoppingCart;
 	}
+
 	public void setShoppingCart(ArrayList<Item> shoppingCart) {
 		this.shoppingCart = shoppingCart;
 	}
+
 	public String getReceiptId() {
 		return receiptId;
 	}
+
 	public void setReceiptId(String receiptId) {
 		this.receiptId = receiptId;
 	}
-	
-	
+
 	public String getErrorMessage() {
 		return errorMessage;
 	}
+
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-	
-	
+
 	public String getCardNo() {
 		return cardNo;
 	}
+
 	public void setCardNo(String cardNo) {
 		this.cardNo = cardNo;
 	}
+
 	public String getExpiryDate() {
 		return expiryDate;
 	}
+
 	public void setExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
+
 	public String getPaymentType() {
 		return paymentType;
 	}
+
 	public void setPaymentType(String paymentType) {
 		this.paymentType = paymentType;
 	}
+
 	/**
-	 * This method is invoked when pay button is clicked. This method populates the fields on the Order confirmation page and 
-	 * creates a new order ,retrieves receiptId from back end and displays it.
-	 * @return  String : returns Action outcome based on which page navigation is decided 
+	 * This method is invoked when pay button is clicked. This method populates
+	 * the fields on the Order confirmation page and creates a new order
+	 * ,retrieves receiptId from back end and displays it.
+	 * 
+	 * @return String : returns Action outcome based on which page navigation is
+	 *         decided
 	 */
-	
-	public String generateOrder()
-	{
-		
+
+	public String generateOrder() {
+
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-		
-		// Session object holds current username 
-		String userId=(String) session.getAttribute("username");
-		
+		HttpSession session = (HttpSession) facesContext.getExternalContext()
+				.getSession(false);
+
+		// Session object holds current username
+		String userId = (String) session.getAttribute("username");
+
 		ProductService service = new ProductService();
-		
+
 		try {
-			this.customerId=userId;	
-			this.receiptId= service.saveOrder(totalprice, customerId,paymentType,cardNo,expiryDate);
-				System.out.println();
-			this.purchasedDate=new Date(System.currentTimeMillis());
-			service.savePurchasedItems(shoppingCart, Integer.parseInt(receiptId));
-			
+			this.customerId = userId;
+			service.updateStock(shoppingCart);
+			this.receiptId = service.saveOrder(totalprice, customerId,
+					paymentType, cardNo, expiryDate);
+
+			this.purchasedDate = new Date(System.currentTimeMillis());
+			service.savePurchasedItems(shoppingCart,
+					Integer.parseInt(receiptId));
+
 		} catch (ConnectException e) {
 			// TODO Auto-generated catch block
-			this.errorMessage=e.getMessage();
+			this.errorMessage = e.getMessage();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			this.errorMessage=e.getMessage();
+			this.errorMessage = e.getMessage();
 		}
 		return "orderConfirmation";
 	}
-	
-	
-	public String Payment()
-	{
-		if(this.paymentType.equalsIgnoreCase("card"))
+
+	public String Payment() {
+		if (this.paymentType.equalsIgnoreCase("card"))
 			return "CardInfoPage";
 		else
-			
-		return generateOrder();
+
+			return generateOrder();
 	}
-	
-	
+
 }

@@ -25,6 +25,26 @@
 		<managed-bean-class>com.ubc.ca.model.Purchase</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>item</managed-bean-name>
+		<managed-bean-class>com.ubc.ca.model.Item</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>report</managed-bean-name>
+		<managed-bean-class>com.ubc.ca.model.Report</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>customer</managed-bean-name>
+		<managed-bean-class>com.ubc.ca.model.Customer</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>returnItem</managed-bean-name>
+		<managed-bean-class>com.ubc.ca.model.Return</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>  
       <from-view-id>/*</from-view-id>  
       <navigation-case>  
@@ -130,7 +150,7 @@
 	</navigation-rule>
 	<navigation-rule>
 		<display-name>Results</display-name>
-		<from-view-id>/Results.jsp</from-view-id>
+		<from-view-id>/Search.jsp</from-view-id>
 		<navigation-case>
 			<from-outcome>AddSearch</from-outcome>
 			<to-view-id>/OrderItems.xhtml</to-view-id>
@@ -141,7 +161,7 @@
 		<from-view-id>/OrderItems.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>search</from-outcome>
-			<to-view-id>/Results.jsp</to-view-id>
+			<to-view-id>/Search.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -168,6 +188,13 @@
 			<to-view-id>/OrderConfirmation.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>  
+      <from-view-id>/*</from-view-id>  
+      <navigation-case>  
+          <from-outcome>logout</from-outcome>  
+          <to-view-id>/index.jsp</to-view-id>  
+      </navigation-case>  
+  </navigation-rule>
 	<lifecycle>
 		<phase-listener>com.ubc.ca.phaselistener.LoginListener</phase-listener>
 	</lifecycle>

@@ -6,10 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="style.css"></link>
+
 </head>
 <body>
+<f:view><h:form>
+   <h:commandLink id="logout" action="#{student.logout }" styleClass="logout">
+			<h:outputText value="Logout"/>
+		</h:commandLink></h:form><br><br>
 <h1 align="center">Return Item Menu</h1>
-<f:view>
 <h:form><br><br><br>
 		<center><h:panelGrid border="0" columns="2" style="height: 123px; width: 326px; ">
 			
@@ -18,16 +23,18 @@
 			
 			
 			
-				<h:inputText></h:inputText>
+				<h:inputText value="#{returnItem.receiptid}"></h:inputText>
 			
 			<h:outputLabel value="UPC"></h:outputLabel>
 			
 			
-				<h:inputText></h:inputText>
-			
-		</h:panelGrid><br>
+				<h:inputText value="#{returnItem.upc}"></h:inputText>
+					<h:outputLabel value="Quantity"></h:outputLabel>
+					<h:inputText value="#{returnItem.quantity}"></h:inputText>
+
+				</h:panelGrid><br>
 		<br>
-			<h:commandButton value="Return Item"></h:commandButton>
+			<h:commandButton value="Return Item" action="#{returnItem.saveReturn}"></h:commandButton>
 		</center></h:form>
 	</f:view>
 </body>

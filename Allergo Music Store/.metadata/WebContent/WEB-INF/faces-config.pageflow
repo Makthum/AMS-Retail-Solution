@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13729985609590" configfile="/Allergo Music Store/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="index" x="139" y="266" id="pf13730019769630" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf13753772069660 pf13753772069661 pf13753772069662 pf13755619331500" inlinks="pf13734100533313" path="/index.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="*" id="pf13734100533314" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13734100533313" path="/*"/>
-  <nodes xsi:type="pageflow:PFPage" name="Results" x="754" y="394" id="pf13738453237901" referenceLink="//@navigationRule.14/@navigationCase.0/@toViewId|" outlinks="pf13757775367000" inlinks="pf13757775367001" path="/Results.jsp"/>
-  <nodes xsi:type="pageflow:PFPage" name="OrderConfirmation" x="697" y="112" id="pf13741127124201" referenceLink="//@navigationRule.15/@navigationCase.0/@toViewId|" inlinks="pf13757775367012 pf13758238801882" path="/OrderConfirmation.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="index" x="139" y="266" id="pf13730019769630" referenceLink="//@navigationRule.18/@navigationCase.0/@toViewId|" outlinks="pf13753772069660 pf13753772069661 pf13753772069662 pf13755619331500" inlinks="pf13734100533313 pf13759232209772" path="/index.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf13734100533314" referenceLink="//@navigationRule.18/@fromViewId|" outlinks="pf13734100533313 pf13759232209772" path="/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="Results" x="754" y="394" id="pf13738453237901" referenceLink="//@navigationRule.14/@navigationCase.0/@toViewId|" outlinks="pf13757775367000" inlinks="pf13757775367001" path="/Search.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="OrderConfirmation" x="697" y="112" id="pf13741127124201" referenceLink="//@navigationRule.17/@navigationCase.0/@toViewId|" inlinks="pf13757775367012 pf13758238801882" path="/OrderConfirmation.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="Customer" x="168" y="436" id="pf13753772069673" referenceLink="//@navigationRule.12/@fromViewId|" outlinks="pf13753822206908 pf13757775367013" inlinks="pf13753772069661" path="/Customer.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="Clerk" x="24" y="394" id="pf13753772069674" referenceLink="//@navigationRule.11/@fromViewId|" outlinks="pf13753822206909 pf13757775367014" inlinks="pf13753772069660" path="/Clerk.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="Manager" x="300" y="459" id="pf13753772069675" referenceLink="//@navigationRule.10/@fromViewId|" outlinks="pf137538222069010 pf13757569139210 pf13757569139211 pf13757569139212" inlinks="pf13753772069662" path="/Manager.jsp"/>
@@ -14,7 +14,7 @@
   <nodes xsi:type="pageflow:PFPage" name="DailySalesReport" x="642" y="613" id="pf13757569139214" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" inlinks="pf13757569139212" path="/DailySalesReport.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="TopSellingReport" x="590" y="551" id="pf13757569139215" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf13757569139210" path="/TopSellingReport.jsp"/>
   <nodes xsi:type="pageflow:PFPage" name="OrderItems" x="733" y="523" id="pf13757775367025" referenceLink="//@navigationRule.16/@fromViewId|" outlinks="pf13757775367001 pf13757775367012 pf13758237970300" inlinks="pf13757775367014 pf13757775367013 pf13757775367000" path="/OrderItems.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="CardPayment" x="509" y="306" id="pf13758237970301" referenceLink="//@navigationRule.16/@navigationCase.0/@toViewId|" outlinks="pf13758238801882" inlinks="pf13758237970300" path="/CardPayment.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="CardPayment" x="509" y="306" id="pf13758237970301" referenceLink="//@navigationRule.17/@fromViewId|" outlinks="pf13758238801882" inlinks="pf13758237970300" path="/CardPayment.jsp"/>
   <links id="pf13734100533313" target="pf13730019769630" source="pf13734100533314" outcome="loginPage"/>
   <links id="pf13753772069660" target="pf13753772069674" source="pf13730019769630" outcome="clerk"/>
   <links id="pf13753772069661" target="pf13753772069673" source="pf13730019769630" outcome="customer"/>
@@ -33,4 +33,5 @@
   <links id="pf13757775367012" target="pf13741127124201" source="pf13757775367025" outcome="orderConfirmation"/>
   <links id="pf13758237970300" target="pf13758237970301" source="pf13757775367025" outcome="CardInfoPage"/>
   <links id="pf13758238801882" target="pf13741127124201" source="pf13758237970301" outcome="orderConfirmation"/>
+  <links id="pf13759232209772" target="pf13730019769630" source="pf13734100533314" outcome="logout"/>
 </pageflow:Pageflow>

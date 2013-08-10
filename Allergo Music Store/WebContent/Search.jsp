@@ -6,15 +6,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="style.css"></link>
+
 </head>
 <body>
-<f:view>
+<f:view><h:form>
+   <h:commandLink id="logout" action="#{student.logout }" styleClass="logout">
+			<h:outputText value="Logout"/>
+		</h:commandLink></h:form>
+<h:form>
+<br><br>
 <center><h1>Item Search</h1>
 <br>
+
+<h:panelGrid border="0" columns="3" style="width: 1001px; ">
+				<h:outputLabel value="Title"/><h:inputText value="#{shoppingCart.item.title }"/><h:commandButton value="Search" action="#{shoppingCart.search}" style="width: 137px; " /><h:outputLabel value="Cateogry"/><h:inputText value="#{shoppingCart.item.category }"/>
+					<br><h:outputLabel value="Quantity" /><h:inputText value="#{shoppingCart.item.quantity }" /><br><h:outputText value="LeadSinger" /><h:inputText value="#{shoppingCart.item.leadSinger }" /><h:outputText/>
+					
+					
+					
+
+
+
+				</h:panelGrid>
+				<h:outputText value="#{shoppingCart.errorMessage}"/>
 <br>
 <br>
 
-<h:form>
+
 		<h:dataTable border="1" value="#{shoppingCart.searchList }" var="item">
 				<h:column id="column1">
 					<f:facet name="header">
@@ -63,7 +82,7 @@ function openWin()
 
 }
 </script>
-		</h:form></center>
+		</center></h:form>
 	</f:view>
 </body>
 </html>

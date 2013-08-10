@@ -6,10 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="style.css"></link>
+
 </head>
 <body>
-<f:view>
-
+<f:view><h:form>
+   <h:commandLink id="logout" action="#{student.logout }" styleClass="logout">
+			<h:outputText value="Logout"></h:outputText>
+		</h:commandLink></h:form>
+<br><br>
 <center><h1> Order Confirmation </h1><br>
 <br><br>
 			<h:panelGrid border="0" columns="4" style="width: 641px; ">
@@ -37,7 +42,7 @@
 			<br>
 			<br>
 			<br>
-			<h:dataTable border="1" value="#{shoppingCart.shoppingcart }" var="item">
+			<h:dataTable border="1" value="#{shoppingCart.shoppingcart }" var="item" styleClass="CSSTableGenerator">
 				<h:column id="column1">
 					<f:facet name="header">
 						<h:outputText value="Title"/>

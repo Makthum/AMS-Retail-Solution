@@ -6,9 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="style.css"></link>
+
 </head>
 <body>
-<f:view>
+<f:view><h:form>
+   <h:commandLink id="logout" action="#{student.logout }" styleClass="logout">
+			<h:outputText value="Logout"></h:outputText>
+		</h:commandLink></h:form>
+<br><br>
 <h1 align="center"> Manager Main Menu </h1><br><br><br>
 <h:form><center>
 			<h:commandButton value="Add Item" style="width: 125px; " action="addItem"></h:commandButton><br>

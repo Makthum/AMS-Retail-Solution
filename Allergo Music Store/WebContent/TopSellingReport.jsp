@@ -6,20 +6,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Daily sales Report</title>
+<link rel="stylesheet" type="text/css" href="style.css"></link>
+
 </head>
 <body>
-<h1 align="center"> Daily Sales Report</h1>
-<f:view>
+
+<f:view><h:form>
+   <h:commandLink id="logout" action="#{student.logout }" styleClass="logout">
+			<h:outputText value="Logout"/>
+		</h:commandLink></h:form>
 <h:form><br>
+<br>
+<h1 align="center"> Daily Sales Report</h1><br>
 <br>
 		<center><h:panelGrid border="0" columns="3" style="width: 590px; ">
 			<h:outputText value="Sales Report on"></h:outputText>
 		
-				<h:inputText></h:inputText>
+				<h:inputText value="#{report.date }"></h:inputText>
 			
-					<h:commandButton value="Generate Report"></h:commandButton>
+					<h:commandButton value="Generate Report" action="#{report.TopnNSalesReport }"></h:commandButton>
 					<h:outputLabel value="Top n Items"></h:outputLabel>
-					<h:inputText></h:inputText>
+					<h:inputText value="#{report.number_items }"></h:inputText>
 
 
 
@@ -29,31 +36,31 @@
 		<br>
 		<br>
 		
-		<h:dataTable border="1" value="#{shoppingCart.shoppingcart }" var="item">
+		<h:dataTable border="1" value="#{report.topItem_Report }" var="items" styleClass="CSSTableGenerator">
 				<h:column id="column1">
 					<f:facet name="header">
 						<h:outputText value="Title"/>
 					</f:facet>
-					<h:outputLabel value="#{} "/>
+					<h:outputLabel value="#{items.title} "/>
 				</h:column>
 				<h:column id="column2">
 					<f:facet name="header">
 						<h:outputText value="Company"/>
 					</f:facet>
-					<h:outputLabel value="#{} "/>
+					<h:outputLabel value="#{items.company} "/>
 				</h:column>
 				<h:column id="column3">
 					<f:facet name="header">
 						<h:outputText value="Quantity"/>
 					</f:facet>
-					<h:outputLabel value="#{} "/>
+					<h:outputLabel value="#{items.quantity} "/>
 				</h:column>
 
 <h:column id="column4">
 					<f:facet name="header">
 						<h:outputText value="No of Copies Sold"/>
 					</f:facet>
-					<h:outputLabel value="#{} "/>
+					<h:outputLabel value="#{items.qtySold} "/>
 				</h:column>	
 				
 				

@@ -4,20 +4,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="style.css"></link>
+
 </head>
 <body>
-<h1 align="center"> Order Menu </h1>
+
 
 <f:view>
 
-
-
+<h:form>
+   <h:commandLink id="logout" action="#{student.logout }" styleClass="logout">
+			<h:outputText value="Logout"></h:outputText>
+		</h:commandLink></h:form>
+<br></br>
+<br>
+</br>
+<h1 align="center"> Order Menu </h1>
 		<h:form id="Order">
 
 
 <center>
 			<h:panelGrid border="0" columns="3" style="width: 1001px; ">
-				<h:outputLabel value="Title"/><h:inputText value="#{shoppingCart.item.title }"/><h:commandButton value="AddtoCart" action="#{shoppingCart.AddCart }" style="width: 136px; "/><h:outputLabel value="Cateogry"/><h:inputText value="#{shoppingCart.item.category }"/><h:commandButton value="Search" action="#{shoppingCart.search}" style="width: 137px; "/><h:outputLabel value="Quantity"/><h:inputText value="#{shoppingCart.item.quantity }"/>
+				<h:outputLabel value="Title"/><h:inputText value="#{shoppingCart.item.title }"/><h:commandButton value="AddtoCart" action="#{shoppingCart.AddCart }" style="width: 136px; "/><h:outputLabel value="Cateogry"/><h:inputText value="#{shoppingCart.item.category }"/><h:commandButton value="Search" action="search" style="width: 137px; "/><h:outputLabel value="Quantity"/><h:inputText value="#{shoppingCart.item.quantity }"/>
 					<h:outputText/><h:outputText value="LeadSinger"/><h:inputText value="#{shoppingCart.item.leadSinger }"/>
 					
 					
@@ -38,7 +46,7 @@
 			<br/><br/>
 			
 			<h:outputText value="#{shoppingCart.errorMessage}"/><br/><br/>
-			<center><h:dataTable border="1" value="#{shoppingCart.shoppingcart }" var="item">
+			<center><h:dataTable border="1" value="#{shoppingCart.shoppingcart }" var="item" styleClass="CSSTableGenerator">
 				<h:column id="column1">
 					<f:facet name="header">
 						<h:outputText value="Title"/>

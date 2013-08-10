@@ -5,23 +5,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Card Payment</title>
+<link rel="stylesheet" type="text/css" href="style.css"></link>
+
 </head>
 <body>
-<f:view><h:form>
-
-		<h:panelGrid border="1" columns="2">
-			<h:outputLabel value="No"></h:outputLabel>
+<f:view>
+<h:form>
+   <h:commandLink id="logout" action="#{student.logout }" styleClass="logout">
+			<h:outputText value="Logout"></h:outputText>
+		</h:commandLink></h:form><h:form>
+<br>
+<br>
+<h1 align="center"> Credit Card Information</h1>
+<br>
+<br>
+		<h:panelGrid border="0" columns="2" style="height: 97px; width: 312px; ">
+			<h:outputLabel value="Card No"></h:outputLabel>
 			
 				<h:inputText value="#{purchase.cardNo }"></h:inputText>
 		
 			
-				<h:outputLabel value="Date"></h:outputLabel>
+				<h:outputLabel value="Expiry Date"></h:outputLabel>
 			
 			<h:inputText value="#{purchase.expiryDate}">  </h:inputText>
 			
 			
-		</h:panelGrid>
+		</h:panelGrid><br>
+		<br>
 			<h:commandButton value="continue" action="#{purchase.generateOrder }" ></h:commandButton>
 		</h:form>
 	</f:view>

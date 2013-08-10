@@ -6,18 +6,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Daily sales Report</title>
+<link rel="stylesheet" type="text/css" href="style.css"></link>
+
 </head>
 <body>
-<h1 align="center"> Daily Sales Report</h1>
+
 <f:view>
-<h:form><br>
+<h:form>
+   <h:commandLink id="logout" action="#{student.logout }" styleClass="logout">
+			<h:outputText value="Logout"></h:outputText>
+		</h:commandLink></h:form>
+<h:form><br> <br> <br>
+<h1 align="center"> Daily Sales Report</h1><br>
 <br>
 		<center><h:panelGrid border="0" columns="3" style="width: 590px; ">
 			<h:outputText value="Sales Report on"></h:outputText>
 		
-				<h:inputText></h:inputText>
+				<h:inputText value="#{report.date }"></h:inputText>
 			
-					<h:commandButton value="Generate Report"></h:commandButton>
+					<h:commandButton value="Generate Report" action="#{report.dailySalesReport }"></h:commandButton>
 				
 			
 			
@@ -27,38 +34,38 @@
 		<br>
 		<br>
 		
-		<h:dataTable border="1" value="#{shoppingCart.shoppingcart }" var="item">
+		<h:dataTable border="1" value="#{report.dailyReport}" var="items" styleClass="CSSTableGenerator">
 				<h:column id="column1">
 					<f:facet name="header">
 						<h:outputText value="UPC"/>
 					</f:facet>
-					<h:outputLabel value="#{} "/>
+					<h:outputLabel value="#{items.UPC} "/>
 				</h:column>
 				<h:column id="column2">
 					<f:facet name="header">
 						<h:outputText value="Category"/>
 					</f:facet>
-					<h:outputLabel value="#{} "/>
+					<h:outputLabel value="#{items.category} "/>
 				</h:column>
 				<h:column id="column3">
 					<f:facet name="header">
 						<h:outputText value="Price"/>
 					</f:facet>
-					<h:outputLabel value="#{} "/>
+					<h:outputLabel value="#{items.price} "/>
 				</h:column>
 
 <h:column id="column5">
 					<f:facet name="header">
 						<h:outputText value="Quantity"/>
 					</f:facet>
-					<h:outputLabel value="#{} "/>
+					<h:outputLabel value="#{items.quantity} "/>
 				</h:column>	
 				
 				<h:column id="column4">
 					<f:facet name="header">
 						<h:outputText value="Total Value"/>
 					</f:facet>
-					<h:outputLabel value="#{} "/>
+					<h:outputLabel value="#{items.totalPrice} "/>
 				</h:column>	
 						</h:dataTable>
 		</center>

@@ -5,13 +5,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="style.css"></link>
+
 <title>Insert title here</title>
 </head>
 <body>
 <f:view>
+<br>
+<br>
+<h:form>
+   <h:commandLink id="logout" action="#{student.logout }" styleClass="logout">
+			<h:outputText value="Logout"></h:outputText>
+		</h:commandLink></h:form>
 <h1 align="center"> Customer Main Menu </h1>
 <br>
-<br>
+
 <br>
 <br>
 <br>

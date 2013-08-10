@@ -6,10 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="style.css"></link>
 </head>
 <body bgcolor="FFFF34">
 <f:view>
-
+        <br>
+        <br>
 		<h1 align="center"> Allergo Music Store</h1>
 		<br>
 		<br>
@@ -17,7 +19,7 @@
 		<br>
 		<h:form>
 			<center>
-			<h:panelGrid border="0" columns="2" >
+			<h:panelGrid border="0" columns="2" style="width: 295px; ">
 				<h:outputText value="Username"></h:outputText>
 				<h:inputText value="#{student.userId}"></h:inputText>
 				<h:outputText value="password"></h:outputText>
@@ -30,7 +32,7 @@
 			</h:commandLink>
 			<br>
 			<br>
-			<h:commandButton action="#{student.login}" value="Submit"/><br><br><h:outputLabel
+			<h:commandButton action="#{student.login}" value="Login" style="width: 106px; "/><br><br><h:outputLabel
 					value="#{student.errorMessage }"></h:outputLabel>
 			</center>
 			

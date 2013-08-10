@@ -6,27 +6,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Process Order</title>
+<link rel="stylesheet" type="text/css" href="style.css"></link>
+
 </head>
 <body>
-<f:view>
+<f:view><h:form>
+   <h:commandLink id="logout" action="#{student.logout }" styleClass="logout">
+			<h:outputText value="Logout"/>
+		</h:commandLink>
+<br><br>
 <h1 align="center">Process Orders</h1><br>
 <br><br>
 <center>
 			<h:panelGrid border="0" columns="2" style="height: 139px; width: 337px; ">
 				<h:outputLabel value="ReceiptId"></h:outputLabel>
-					<h:inputText></h:inputText>
+					<h:inputText value="#{item.receiptId }"></h:inputText>
 			
 				<h:outputLabel value="Delivered Date"></h:outputLabel>
-					<h:inputText></h:inputText>
+					<h:inputText value="#{item.deliveryDate }"></h:inputText>
 				
 				
 			
 			</h:panelGrid>	<br>
 				<br>
 				<br>
-				<h:commandButton  value="Set Delivery Date"></h:commandButton>
+				<h:commandButton  value="Set Delivery Date" action="#{item.setDelDate }"></h:commandButton>
 			
 		</center>
-</f:view>
+</h:form></f:view>
 </body>
 </html>
