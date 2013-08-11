@@ -14,11 +14,20 @@ public class Report {
 	private int number_items;
 	private ArrayList<Item> dailyReport= new ArrayList<Item>();
 	private ArrayList<Item> TopItem_Report= new ArrayList<Item>();
+
+	private float dailySalesTotal = 0;
+
 	public String getDate() {
 		return date;
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public float getDailySalesTotal() {
+		return dailySalesTotal;
+	}
+	public void setDailySalesTotal(float dailySalesTotal) {
+		this.dailySalesTotal = dailySalesTotal;
 	}
 	public int getNumber_items() {
 		return number_items;
@@ -46,6 +55,11 @@ public class Report {
 			 SimpleDateFormat date= new SimpleDateFormat("dd/MM/yyyy");
 			   java.util.Date temp_date=date.parse(this.date);
 			   this.dailyReport=(ArrayList<Item>)service.generateDailySalesReport(temp_date);
+			   for (Item i : dailyReport) {
+					if (i.getUPC() != null) {
+						dailySalesTotal += i.getTotalPrice();
+					}
+				}
 		} catch (ConnectException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

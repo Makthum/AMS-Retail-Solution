@@ -11,6 +11,7 @@ public class Customer {
 	private String caddress;
 	private String cpassword; 
 	private String cphone; 
+	private String errorMessage;
 	
 
 
@@ -75,6 +76,18 @@ public String getCid() {
 
 
 
+public String getErrorMessage() {
+		return errorMessage;
+	}
+
+
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+
+
+
 public String registerCustomer()
   {
 	  CustomerService service;
@@ -82,12 +95,13 @@ public String registerCustomer()
 	try {
 		service = new CustomerService();
 		  service.registerCustomer(cid, cname, caddress, cpassword, cphone);
-		  return "login";
+		  return "customerRegistered";
 	} catch (ConnectException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		this.errorMessage=" Registration Failed. Please Try again " + e.getMessage();
 	}
-	return "reload";
+	return "success";
   }
 
 }

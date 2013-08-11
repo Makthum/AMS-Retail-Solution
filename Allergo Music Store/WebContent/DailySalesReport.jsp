@@ -68,7 +68,9 @@
 					<h:outputLabel value="#{items.totalPrice} "/>
 				</h:column>	
 						</h:dataTable>
-		</center>
+				<h:outputLabel value="Total"></h:outputLabel>    
+				<h:inputText value="#{report.dailySalesTotal }"></h:inputText>
+			</center>
 </h:form>
 	</f:view>
 

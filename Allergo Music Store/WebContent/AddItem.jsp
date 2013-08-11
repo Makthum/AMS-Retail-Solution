@@ -55,7 +55,12 @@
 			
 			
 		</h:panelGrid> <br><br>
-			<h:commandButton value="Add Item" action="#{item.updateItem }"></h:commandButton></h:form>
+			<h:commandButton value="Add Item" action="#{item.updateItem }"></h:commandButton>
+			
+			<br>
+			<br>
+				<h:outputLabel value="#{item.errorMessage }"></h:outputLabel>
+			</h:form>
 		</center>
 	</f:view>
 </body>

@@ -148,9 +148,11 @@ public class Item {
 		{
 			service.UpdateItem(UPC, quantity);
 		}
+			this.errorMessage=" Item Updated Successfully";
 		}
 		catch(Exception e)
 		{
+			this.errorMessage=e.getMessage();
 			e.printStackTrace();
 		}
 		return "sucess";
@@ -165,9 +167,11 @@ public class Item {
 		   SimpleDateFormat date= new SimpleDateFormat("dd/MM/yyyy");
 		   java.util.Date date_temp=date.parse(this.deliveryDate);
 		   service.setDeliveryDate(new Date(date_temp.getTime()), receiptId);
+		   this.errorMessage="Order Updated successfully";
 	   }
 	   catch(Exception e)
 	   {
+		   this.errorMessage="Order Processing Failed " + e.getMessage();
 		  e.printStackTrace(); 
 	   }
 	   return "success";

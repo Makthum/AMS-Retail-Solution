@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
 import com.ubc.ca.exception.NoStockException;
 import com.ubc.ca.exception.TooManyItemsFoundException;
 import com.ubc.ca.service.ProductService;
@@ -205,5 +208,22 @@ public class ShoppingCart {
 				return items;
 		}
 		return null;
+	}
+	
+	public String orderItems()
+	{
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) facesContext.getExternalContext()
+				.getSession(false);
+
+		// Session object holds current username
+		String role = (String) session.getAttribute("role");
+		if(role.equalsIgnoreCase("customer"))
+			paymentMethod=false;
+			else
+				paymentMethod=true;
+		return "checkout";
+
+			
 	}
 }

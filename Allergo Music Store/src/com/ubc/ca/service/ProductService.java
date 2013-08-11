@@ -37,7 +37,7 @@ public class ProductService {
 		if (!(leadSinger.equals("") || null == leadSinger
 				|| category.equals("") || null == category || title.equals("") || null == title)) {
 
-			query = "SELECT item.upc,title,item_stock,item_category FROM"
+			query = "SELECT item.upc,title,item_stock,item_category,item_price FROM"
 					+ " item,leadsinger where item.upc=leadsinger.upc and "
 					+ "item.item_category=? and item.title=? "
 					+ "and leadsinger.singer_name=?";
@@ -83,13 +83,13 @@ public class ProductService {
 			query_ps.setString(1, category);
 			query_ps.setString(2, leadSinger);
 		}
-		if (!(category.equals("") || null == category)) {
+		else if (!(category.equals("") || null == category)) {
 			query = "SELECT item.upc,title,item_stock,item_category,item_price "
 					+ "FROM item where item_category=?";
 			query_ps = con.prepareStatement(query);
 			query_ps.setString(1, category);
 		}
-		if (!(title.equals("") || null == title)) {
+		else if (!(title.equals("") || null == title)) {
 			query = "SELECT item.upc,title,item_stock,item_category,item_price "
 					+ "FROM item where item.title=?";
 			query_ps = con.prepareStatement(query);
@@ -97,7 +97,7 @@ public class ProductService {
 			query_ps.setString(1, title);
 
 		}
-		if (!(leadSinger.equals("") || null == leadSinger)) {
+		else if (!(leadSinger.equals("") || null == leadSinger)) {
 			query = "SELECT item.upc,title,item_stock,item_category,item_price FROM item,leadsinger "
 					+ "where item.upc=leadsinger.upc and leadsinger.singer_name=?";
 			query_ps = con.prepareStatement(query);
@@ -293,8 +293,8 @@ public class ProductService {
 
 	
 
-	public String saveOrder(float totalprice, String customerId,
-			String paymentType, String cardNo, String expiryDate)
+	public String[] saveOrder(float totalprice, String customerId,
+			String paymentType, String cardNo, String expiryDate,String expectedDate)
 			throws ConnectException, SQLException {
 		Connection con = ConnectionService.getConnection();
 		String receiptId = null;
@@ -308,9 +308,10 @@ public class ProductService {
 		query_update.setString(3, cardNo);
 		cal.add(Calendar.MONTH, 5);
 		cal = getExpectedDate();
+		expectedDate=cal.getTime().toString();
 		java.sql.Date sqlStartDate = null;
 		if (expiryDate != null) {
-			SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+			SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
 			java.util.Date date;
 
 			try {
@@ -330,7 +331,8 @@ public class ProductService {
 			rs.next();
 			receiptId = Integer.toString((rs.getInt(1)));
 		}
-		return receiptId;
+		con.commit();
+		return new String[]{receiptId,expectedDate};
 	}
 
 	/**

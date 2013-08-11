@@ -25,7 +25,7 @@
 
 <center>
 			<h:panelGrid border="0" columns="3" style="width: 1001px; ">
-				<h:outputLabel value="Title"/><h:inputText value="#{shoppingCart.item.title }"/><h:commandButton value="AddtoCart" action="#{shoppingCart.AddCart }" style="width: 136px; "/><h:outputLabel value="Cateogry"/><h:inputText value="#{shoppingCart.item.category }"/><h:commandButton value="Search" action="search" style="width: 137px; "/><h:outputLabel value="Quantity"/><h:inputText value="#{shoppingCart.item.quantity }"/>
+				<h:outputLabel value="Title"/><h:inputText value="#{shoppingCart.item.title }"/><h:commandButton value="AddtoCart" action="#{shoppingCart.AddCart }" style="width: 136px; "/><h:outputLabel value="Category"/><h:inputText value="#{shoppingCart.item.category }"/><h:commandButton value="Search" action="search" style="width: 137px; "/><h:outputLabel value="Quantity"/><h:inputText value="#{shoppingCart.item.quantity }"/>
 					<h:outputText/><h:outputText value="LeadSinger"/><h:inputText value="#{shoppingCart.item.leadSinger }"/>
 					
 					
@@ -98,11 +98,18 @@
 				<f:setPropertyActionListener value="#{shoppingCart.shoppingcart }" target="#{purchase.shoppingCart }"/>
 				<f:setPropertyActionListener value="#{shoppingCart.totalprice }" target="#{purchase.totalprice }"/>
 				<f:setPropertyActionListener value="#{userId}" target="#{purchase.customerId }"/>
+				<f:setPropertyActionListener value="#{userId}" target="#{purchase.customerId }"/>
+				
 				
 				</h:commandButton>
-				<h:selectOneRadio id="paymenttype" value="#{purchase.paymentType}" style="width: 315px; ">
+				<h:selectOneRadio id="paymenttype" value="#{purchase.paymentType}" style="width: 315px; " rendered="#{shoppingCart.paymentMethod}">
 					<f:selectItem itemValue="cash" itemLabel="Pay by Cash"/>
-   	<f:selectItem itemValue="card" itemLabel="Pay by Credit"/>
+   	<f:selectItem itemValue="card" itemLabel="Pay by Credit"  />
+   	 
+					</h:selectOneRadio>
+				<h:selectOneRadio id="paymenttype_credit" value="#{purchase.paymentType}" style="width: 315px; " rendered="#{!shoppingCart.paymentMethod}">
+				
+   	<f:selectItem itemValue="card" itemLabel="Pay by Credit"  />
    	 
 					</h:selectOneRadio>
 			

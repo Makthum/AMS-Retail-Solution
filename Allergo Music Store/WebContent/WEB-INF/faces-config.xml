@@ -195,6 +195,14 @@
           <to-view-id>/index.jsp</to-view-id>  
       </navigation-case>  
   </navigation-rule>
+	<navigation-rule>
+		<display-name>RegisterCustomer</display-name>
+		<from-view-id>/RegisterCustomer.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>customerRegistered</from-outcome>
+			<to-view-id>/customerRegistered.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 	<lifecycle>
 		<phase-listener>com.ubc.ca.phaselistener.LoginListener</phase-listener>
 	</lifecycle>

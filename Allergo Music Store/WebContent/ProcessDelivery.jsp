@@ -31,8 +31,11 @@
 				<br>
 				<br>
 				<h:commandButton  value="Set Delivery Date" action="#{item.setDelDate }"></h:commandButton>
-			
-		</center>
+				<br>
+				<br>
+				<h:outputLabel value="#{item.errorMessage }"></h:outputLabel>
+
+			</center>
 </h:form></f:view>
 </body>
 </html>

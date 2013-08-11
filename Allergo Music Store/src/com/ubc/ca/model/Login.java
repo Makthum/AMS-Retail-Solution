@@ -62,6 +62,7 @@ public class Login {
 				HttpSession session = (HttpSession) fc.getExternalContext()
 						.getSession(true);
 				session.setAttribute("username", this.userId);
+				session.setAttribute("role", au);
 			}
 		} catch (ConnectException e) {
 			// TODO Auto-generated catch block

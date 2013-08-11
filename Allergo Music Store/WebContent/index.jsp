@@ -12,7 +12,7 @@
 <f:view>
         <br>
         <br>
-		<h1 align="center"> Allergo Music Store</h1>
+		<h1 align="center"> Allegro Music Store</h1>
 		<br>
 		<br>
 		<br>

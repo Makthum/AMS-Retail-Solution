@@ -34,9 +34,15 @@
 				<h:form>
 					<h:inputText readonly="false" value="#{purchase.totalprice }"></h:inputText>
 				</h:form>
-				
-				
-				
+				<h:outputLabel value="Last 5 Digit"></h:outputLabel><h:form>
+					<h:inputText value="#{purchase.last5digit }"></h:inputText>
+				</h:form>
+				<h:outputLabel value="Expected Date"></h:outputLabel><h:form>
+					<h:inputText value="#{purchase.expectedDate }"></h:inputText>
+				</h:form>
+
+
+
 			</h:panelGrid>
 			
 			<br>

@@ -33,13 +33,37 @@ public class ReportService {
 
 		ResultSet rs = ps.executeQuery();		// get the list of sold items
 		
+		String last_category = "";
+		int cat_qty = 0;
+		float cat_sales = 0;
+		
 		// convert each result to item
 		while (rs.next()) {
+			
 			try {
 				String upc = rs.getString("upc");
 				String categ = rs.getString("item_category");
 				int qty = rs.getInt("units");
 				float price = rs.getFloat("item_price");
+				
+				// get the total sales for that category
+				if (last_category == "" || last_category.equalsIgnoreCase(categ)) {
+					last_category = categ;	
+					cat_qty += qty;
+					cat_sales += price * qty;
+					
+				} else {
+					Item ni = new Item();
+					ni.setCategory("Total");
+					ni.setQuantity(cat_qty);
+					ni.setTotalPrice(cat_sales);
+					
+					soldItems.add(ni);
+					
+					last_category = categ;	
+					cat_qty = qty;
+					cat_sales = price * qty;
+				}
 				
 				Item i = new Item();
 				i.setUPC(upc);
@@ -49,11 +73,20 @@ public class ReportService {
 				i.setTotalPrice(price * qty);
 				
 				soldItems.add(i);
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}	
-
+		
+		// add the last one
+		Item ni = new Item();
+		ni.setCategory("Total");
+		ni.setQuantity(cat_qty);
+		ni.setTotalPrice(cat_sales);
+		
+		soldItems.add(ni);
+		
 		return soldItems;
 	}
 	

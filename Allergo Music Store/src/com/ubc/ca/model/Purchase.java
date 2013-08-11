@@ -30,6 +30,26 @@ public class Purchase {
 	private String receiptId;
 	private String cardNo;
 	private String expiryDate;
+	private boolean isCardPayment;
+	private String last5digit;
+	private String expectedDate;
+	
+
+	public String getLast5digit() {
+		return last5digit;
+	}
+
+	public void setLast5digit(String last5digit) {
+		this.last5digit = last5digit;
+	}
+
+	public String getExpectedDate() {
+		return expectedDate;
+	}
+
+	public void setExpectedDate(String expectedDate) {
+		this.expectedDate = expectedDate;
+	}
 
 	private String paymentType;
 	// Error Message for Order Confirmation Page
@@ -107,6 +127,14 @@ public class Purchase {
 		this.paymentType = paymentType;
 	}
 
+	public boolean isCardPayment() {
+		return isCardPayment;
+	}
+
+	public void setCardPayment(boolean isCardPayment) {
+		this.isCardPayment = isCardPayment;
+	}
+
 	/**
 	 * This method is invoked when pay button is clicked. This method populates
 	 * the fields on the Order confirmation page and creates a new order
@@ -130,10 +158,13 @@ public class Purchase {
 		try {
 			this.customerId = userId;
 			service.updateStock(shoppingCart);
-			this.receiptId = service.saveOrder(totalprice, customerId,
-					paymentType, cardNo, expiryDate);
-
+			String result[] = service.saveOrder(totalprice, customerId,
+					paymentType, cardNo, expiryDate,expectedDate);
+			this.receiptId=result[0];
+			this.expectedDate=result[1];
+           System.out.println(expectedDate);
 			this.purchasedDate = new Date(System.currentTimeMillis());
+			this.last5digit=cardNo.substring(cardNo.length()-5,cardNo.length());
 			service.savePurchasedItems(shoppingCart,
 					Integer.parseInt(receiptId));
 

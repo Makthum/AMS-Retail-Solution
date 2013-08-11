@@ -36,14 +36,16 @@
 				<h:inputText value="#{customer.cphone }"></h:inputText>
 		
 			<h:outputLabel value="Password"></h:outputLabel>
-			
-				<h:inputText value="#{customer.cpassword }"></h:inputText>
+
+					
+					<h:inputSecret value="#{customer.cpassword }"></h:inputSecret>
 			
 			
 			
 		</h:panelGrid>
 			<h:commandButton value="Register" action="#{customer.registerCustomer  }"></h:commandButton>
-		</h:form></center>
+			<br>	<h:outputLabel value="#{customer.errorMessage }"></h:outputLabel>
+			</h:form></center>
 	</f:view>
 </body>
 </html>

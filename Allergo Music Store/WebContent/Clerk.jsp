@@ -24,7 +24,7 @@
 <br>
 
 <h:form><center>
-			<h:commandButton value="Purchase Item" style="width: 142px; " action="checkout"></h:commandButton><br>
+			<h:commandButton value="Purchase Item" style="width: 142px; " action="#{shoppingCart.orderItems }"></h:commandButton><br>
 		<br>
 		<br>
 		

@@ -35,7 +35,10 @@
 				</h:panelGrid><br>
 		<br>
 			<h:commandButton value="Return Item" action="#{returnItem.saveReturn}"></h:commandButton>
-		</center></h:form>
+			
+			<br><br><br>
+				<h:outputLabel value="#{returnItem.statusmessage }"></h:outputLabel>
+			</center></h:form>
 	</f:view>
 </body>
 </html>
