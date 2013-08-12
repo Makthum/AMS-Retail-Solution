@@ -42,8 +42,9 @@ public class ReturnService {
 	 * @return retid
 	 * @throws Exception
 	 */
-	public int checkAndProcessReturn(int receiptid, int qtyReturned, String upc) throws Exception {
+	public float[] checkAndProcessReturn(int receiptid, int qtyReturned, String upc) throws Exception {
 		int retid = 0;
+	    float amount=0;
 		
 		try {
 			PreparedStatement ps = con.prepareStatement(
@@ -80,7 +81,7 @@ public class ReturnService {
 					// insert into tables and update stock
 					retid = processReturn(receiptid, returnDate, upc, qtyReturned);	
 					is.UpdateItem(upc, qty);
-					printReturn(price, cardno, qty, qtyReturned);	
+					amount=printReturn(price, cardno, qty, qtyReturned);	
 					
 				} else {
 					throw new ReturnException("Return is invalid. Over 15 days have passed.");
@@ -90,7 +91,7 @@ public class ReturnService {
 			e.printStackTrace();
 			throw new ReturnException("Could not process return.");
 		}
-		return retid;	
+		return new float[]{retid,amount};	
 	}
 	
 	/**
@@ -163,7 +164,7 @@ public class ReturnService {
 	 * @param qty
 	 * @param qtyReturned
 	 */
-	public void printReturn(float price, String cardno, int qty, int qtyReturned) {
+	public float printReturn(float price, String cardno, int qty, int qtyReturned) {
 		NumberFormat formatter = NumberFormat.getInstance();
 		formatter.setMinimumFractionDigits(2);
 		formatter.setMaximumFractionDigits(2);
@@ -172,6 +173,7 @@ public class ReturnService {
 		  
 		String retType = cardno==null ? "CASH" : "CARD";
 		System.out.println(retType + " return: $" + formatter.format(retTotal));
+		return retTotal;
 	}
 	
 	/**
