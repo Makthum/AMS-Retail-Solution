@@ -142,7 +142,7 @@ public class Item {
 		{
 			if(price!=0)
 		{
-		service.UpdateItem(UPC, quantity,price);
+	service.UpdateItem(UPC, quantity,price);
 		}
 		else
 		{

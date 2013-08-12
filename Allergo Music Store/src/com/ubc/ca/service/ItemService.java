@@ -80,12 +80,13 @@ public class ItemService {
 			ResultSet rs = ps.executeQuery();
 
 			if (!rs.next()) {
-				System.out.println("UPC not in database");
-				return;
+				throw new Exception("UPC not in DB");
+		
 			} else {
 					dbstock = rs.getInt("item_stock");
 			}
 		} catch (SQLException e) {
+			throw new Exception(" Item Not updated "+e.getMessage());
 
 		}
 
