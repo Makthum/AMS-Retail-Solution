@@ -24,8 +24,7 @@ public class ItemService {
 			ResultSet rs = ps.executeQuery();
 
 			if (!rs.next()) {
-				System.out.println("UPC not in database");
-				return;
+				throw new Exception("UPC not in database");
 			} else {
 				dbstock = rs.getInt("item_stock");
 			}
@@ -80,7 +79,7 @@ public class ItemService {
 			ResultSet rs = ps.executeQuery();
 
 			if (!rs.next()) {
-				throw new Exception("UPC not in DB");
+				throw new Exception("UPC not in database");
 		
 			} else {
 					dbstock = rs.getInt("item_stock");
@@ -94,17 +93,29 @@ public class ItemService {
 
 		// update stock and price
 		try {
-			PreparedStatement ps1 = con
+			if (price < 0) { PreparedStatement ps1 = con
 					.prepareStatement("UPDATE item "
-							+ "SET item_stock = ?, item_price = ?"
+							+ "SET item_stock = ?"
 							+ "WHERE upc = ?");
 
 			ps1.setInt(1, current_stock);
-			ps1.setFloat(2, price);
-			ps1.setString(3, upc);
+			ps1.setString(2, upc);
 			ps1.executeQuery();
 			
 			con.commit();
+			} else {
+				PreparedStatement ps1 = con
+						.prepareStatement("UPDATE item "
+								+ "SET item_stock = ?, item_price = ?"
+								+ "WHERE upc = ?");
+
+				ps1.setInt(1, current_stock);
+				ps1.setFloat(2, price);
+				ps1.setString(3, upc);
+				ps1.executeQuery();
+				
+				con.commit();
+			}
 		} catch (SQLException e) {
 			try {
 				con.rollback();
