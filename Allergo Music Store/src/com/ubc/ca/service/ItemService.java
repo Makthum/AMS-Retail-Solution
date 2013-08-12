@@ -24,7 +24,8 @@ public class ItemService {
 			ResultSet rs = ps.executeQuery();
 
 			if (!rs.next()) {
-				throw new Exception("UPC not in database");
+				
+				throw new Exception(" Item not in DB");
 			} else {
 				dbstock = rs.getInt("item_stock");
 			}
@@ -67,7 +68,8 @@ public class ItemService {
 		
 		int dbstock = 0;
 		
-		if (price < 0) System.out.println("invalid price");
+		if (price < 0) 
+			throw new Exception("Invalid Price");
 		
 		try {
 			// get stock from database
@@ -79,7 +81,7 @@ public class ItemService {
 			ResultSet rs = ps.executeQuery();
 
 			if (!rs.next()) {
-				throw new Exception("UPC not in database");
+				throw new Exception("UPC not in DB");
 		
 			} else {
 					dbstock = rs.getInt("item_stock");
