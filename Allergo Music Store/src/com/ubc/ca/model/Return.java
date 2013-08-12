@@ -89,10 +89,10 @@ public class Return {
 		ReturnService rs;
 		try {
 			rs = new ReturnService();
-			float[] result = rs.checkAndProcessReturn(receiptid, quantity, upc);
-			this.retid = (int)result[0];
+			String[] result = rs.checkAndProcessReturn(receiptid, quantity, upc);
+			this.retid = Integer.parseInt(result[0]);
 			
-			this.statusmessage=" Item Returned and Return Id :" + retid + "         Amount :" + result[1]; 
+			this.statusmessage=" Item Returned and Return Id :" + retid + "         " + result[1]; 
 			return "success";
 		} catch (ConnectException e) {
 			// TODO Auto-generated catch block

@@ -42,9 +42,9 @@ public class ReturnService {
 	 * @return retid
 	 * @throws Exception
 	 */
-	public float[] checkAndProcessReturn(int receiptid, int qtyReturned, String upc) throws Exception {
+	public String[] checkAndProcessReturn(int receiptid, int qtyReturned, String upc) throws Exception {
 		int retid = 0;
-	    float amount=0;
+	    String amount=null;
 		
 		try {
 			PreparedStatement ps = con.prepareStatement(
@@ -91,7 +91,7 @@ public class ReturnService {
 			e.printStackTrace();
 			throw new ReturnException("Could not process return.");
 		}
-		return new float[]{retid,amount};	
+		return new String[]{Integer.toString(retid),amount};	
 	}
 	
 	/**
@@ -164,7 +164,7 @@ public class ReturnService {
 	 * @param qty
 	 * @param qtyReturned
 	 */
-	public float printReturn(float price, String cardno, int qty, int qtyReturned) {
+	public String printReturn(float price, String cardno, int qty, int qtyReturned) {
 		NumberFormat formatter = NumberFormat.getInstance();
 		formatter.setMinimumFractionDigits(2);
 		formatter.setMaximumFractionDigits(2);
@@ -172,8 +172,8 @@ public class ReturnService {
 		float retTotal = qtyReturned * price;
 		  
 		String retType = cardno==null ? "CASH" : "CARD";
-		System.out.println(retType + " return: $" + formatter.format(retTotal));
-		return retTotal;
+		String returnmsg=retType + " return: $" + formatter.format(retTotal);
+		return returnmsg;
 	}
 	
 	/**
