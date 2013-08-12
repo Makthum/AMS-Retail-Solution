@@ -80,7 +80,7 @@ public class ReturnService {
 				if (isValidReturn(purchaseDate, returnDate)) {		
 					// insert into tables and update stock
 					retid = processReturn(receiptid, returnDate, upc, qtyReturned);	
-					is.UpdateItem(upc, qty);
+					is.UpdateItem(upc, qtyReturned);
 					amount=printReturn(price, cardno, qty, qtyReturned);	
 					
 				} else {
