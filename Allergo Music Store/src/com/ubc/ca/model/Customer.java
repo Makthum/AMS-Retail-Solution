@@ -2,6 +2,7 @@ package com.ubc.ca.model;
 
 import java.net.ConnectException;
 
+import com.ubc.ca.exception.ConnectionException;
 import com.ubc.ca.service.CustomerService;
 
 public class Customer {
@@ -100,6 +101,11 @@ public String registerCustomer()
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		this.errorMessage=" Registration Failed. Please Try again " + e.getMessage();
+	} catch (ConnectionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		this.errorMessage=" Registration Failed. Please Try again " + e.getMessage();
+
 	}
 	return "success";
   }

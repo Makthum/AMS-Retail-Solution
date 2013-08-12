@@ -26,19 +26,19 @@
 				<h:form>
 					<h:inputText readonly="false" value="#{purchase.purchasedDate }"></h:inputText>
 				</h:form>
-				<h:outputLabel value="Customer Id"></h:outputLabel>
+				<h:outputLabel value="Customer Id" rendered="#{!purchase.paymentMethod }"></h:outputLabel>
 				<h:form>
-					<h:inputText readonly="false" value="#{purchase.customerId }"></h:inputText>
+					<h:inputText readonly="false" value="#{purchase.customerId }" rendered="#{!purchase.paymentMethod }"></h:inputText>
 				</h:form>
 				<h:outputLabel value="Total Amount"></h:outputLabel>
 				<h:form>
 					<h:inputText readonly="false" value="#{purchase.totalprice }"></h:inputText>
 				</h:form>
-				<h:outputLabel value="Last 5 Digit"></h:outputLabel><h:form>
-					<h:inputText value="#{purchase.last5digit }"></h:inputText>
+				<h:outputLabel value="Last 5 Digit"  rendered="#{!purchase.paymentMethod }"></h:outputLabel><h:form>
+					<h:inputText value="#{purchase.last5digit }" rendered="#{!purchase.paymentMethod }"></h:inputText>
 				</h:form>
-				<h:outputLabel value="Expected Date"></h:outputLabel><h:form>
-					<h:inputText value="#{purchase.expectedDate }"></h:inputText>
+				<h:outputLabel value="Expected Date" rendered="#{!purchase.paymentMethod }"></h:outputLabel><h:form>
+					<h:inputText value="#{purchase.expectedDate }" rendered="#{!purchase.paymentMethod }"></h:inputText>
 				</h:form>
 
 

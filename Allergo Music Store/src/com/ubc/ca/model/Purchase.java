@@ -33,6 +33,7 @@ public class Purchase {
 	private boolean isCardPayment;
 	private String last5digit;
 	private String expectedDate;
+	private boolean paymentMethod;
 	
 
 	public String getLast5digit() {
@@ -131,6 +132,14 @@ public class Purchase {
 		return isCardPayment;
 	}
 
+	public boolean isPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(boolean paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
 	public void setCardPayment(boolean isCardPayment) {
 		this.isCardPayment = isCardPayment;
 	}
@@ -152,11 +161,15 @@ public class Purchase {
 
 		// Session object holds current username
 		String userId = (String) session.getAttribute("username");
+		String role=(String)session.getAttribute("role");
 
 		ProductService service = new ProductService();
 
 		try {
+			if(role.equalsIgnoreCase("customer"))
 			this.customerId = userId;
+			else
+			this.customerId=null;
 			service.updateStock(shoppingCart);
 			String result[] = service.saveOrder(totalprice, customerId,
 					paymentType, cardNo, expiryDate,expectedDate);
@@ -164,6 +177,7 @@ public class Purchase {
 			this.expectedDate=result[1];
            System.out.println(expectedDate);
 			this.purchasedDate = new Date(System.currentTimeMillis());
+			if(cardNo!=null)
 			this.last5digit=cardNo.substring(cardNo.length()-5,cardNo.length());
 			service.savePurchasedItems(shoppingCart,
 					Integer.parseInt(receiptId));
