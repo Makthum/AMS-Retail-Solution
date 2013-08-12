@@ -494,10 +494,9 @@ public class ProductService {
 	 * 
 	 * @param date
 	 * @param receiptid
-	 * @throws SQLException
-	 * @throws ConnectException 
+	 * @throws Exception 
 	 */
-	public void setDeliveryDate ( Date date, int receiptid ) throws SQLException, ConnectException {
+	public void setDeliveryDate ( Date date, int receiptid ) throws Exception {
 
 		Connection con= ConnectionService.getConnection();
 
@@ -507,8 +506,8 @@ public class ProductService {
 
 		ResultSet rs = query_ps1.executeQuery();
 		if (!rs.next()) {
-			System.out.println("receiptid not in database");
-			return;
+			throw new Exception(" Receipt Id not in DB");
+			
 		}
 
 		String query="UPDATE purchase SET delivery_date = ? WHERE receiptid = ?";
