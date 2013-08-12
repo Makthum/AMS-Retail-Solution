@@ -97,16 +97,11 @@ public String registerCustomer()
 		service = new CustomerService();
 		  service.registerCustomer(cid, cname, caddress, cpassword, cphone);
 		  return "customerRegistered";
-	} catch (ConnectException e) {
+	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
-		this.errorMessage=" Registration Failed. Please Try again " + e.getMessage();
-	} catch (ConnectionException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		this.errorMessage=" Registration Failed. Please Try again " + e.getMessage();
-
-	}
+		this.errorMessage=e.getMessage();
+	} 
 	return "success";
   }
 

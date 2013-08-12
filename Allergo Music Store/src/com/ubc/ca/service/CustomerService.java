@@ -10,12 +10,8 @@ import com.ubc.ca.exception.ConnectionException;
 public class CustomerService {
 	private static Connection con;
 
-	public CustomerService() throws ConnectException {
-		con = ConnectionService.getConnection();
-	}
 
-
-	public void registerCustomer(String cid, String cname, String cadd, String password, String cphone) throws ConnectionException, ConnectException{
+	public void registerCustomer(String cid, String cname, String cadd, String password, String cphone) throws Exception{
 		con = ConnectionService.getConnection();
 		
 		try {
@@ -51,24 +47,21 @@ public class CustomerService {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			if (cid == null || password == null){
-				System.out.println("ERROR: Please fill in all fields!");
-			}
-			else {
-			System.out.println("ERROR: User ID has already been taken. Try another!");
-			} 
-			 try 
-			    {
+			try {
 				// undo the insert
-				con.rollback();	
-			    }
-			    catch (SQLException e1)
-			    {
+				con.rollback();
+				e.printStackTrace();
+			} catch (SQLException e1) {
 				System.out.println("Message: " + e1.getMessage());
 				System.exit(-1);
-			    }
-			e.printStackTrace();
+			}
+
+			if (cid == null || password == null) {
+				throw new Exception("ERROR: Please fill in all fields!");
+			} else {
+				throw new Exception(
+						"ERROR: User ID has already been taken. Try another!");
+			}
 		}
 		
 				
